@@ -10,7 +10,7 @@
 
 @interface WebViewScaleController : NSObject
 
-@property (nonatomic, weak) WKWebView* webView;
+@property (nonatomic, weak, readonly) WKWebView* webView;
 @property (nonatomic) CGFloat browserScale;
 
 - (instancetype)initWithManagedWebView:(WKWebView*)webView;
