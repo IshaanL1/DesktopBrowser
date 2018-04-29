@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "BrowserTabViewController.h"
 
 @interface AppDelegate ()
 
@@ -15,13 +16,14 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
+{
 
     if (![self window]) {
         [self setWindow:[[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds]];
     }
 
-    UIViewController* vc = [[UIViewController alloc] init];
+    UIViewController* vc = [[BrowserTabViewController alloc] initWithCompletionHandler: nil];
 
     [[self window] setRootViewController:vc];
     [[self window] setBackgroundColor:[UIColor whiteColor]];

@@ -11,6 +11,9 @@
 		504816552095DC3D00AE966F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 504816542095DC3D00AE966F /* Assets.xcassets */; };
 		504816582095DC3D00AE966F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504816562095DC3D00AE966F /* LaunchScreen.storyboard */; };
 		5048165B2095DC3D00AE966F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5048165A2095DC3D00AE966F /* main.m */; };
+		504816632095DDC100AE966F /* BrowserTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816622095DDC100AE966F /* BrowserTabViewController.m */; };
+		504816662095E00200AE966F /* WKWebView+DBR.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816652095E00200AE966F /* WKWebView+DBR.m */; };
+		504816692095E16C00AE966F /* NSException+DBR.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816682095E16C00AE966F /* NSException+DBR.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +24,12 @@
 		504816572095DC3D00AE966F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		504816592095DC3D00AE966F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5048165A2095DC3D00AE966F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		504816612095DDC100AE966F /* BrowserTabViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowserTabViewController.h; sourceTree = "<group>"; };
+		504816622095DDC100AE966F /* BrowserTabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowserTabViewController.m; sourceTree = "<group>"; };
+		504816642095DFB600AE966F /* WKWebView+DBR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKWebView+DBR.h"; sourceTree = "<group>"; };
+		504816652095E00200AE966F /* WKWebView+DBR.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+DBR.m"; sourceTree = "<group>"; };
+		504816672095E16C00AE966F /* NSException+DBR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSException+DBR.h"; sourceTree = "<group>"; };
+		504816682095E16C00AE966F /* NSException+DBR.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSException+DBR.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +64,12 @@
 			children = (
 				5048164B2095DC3C00AE966F /* AppDelegate.h */,
 				5048164C2095DC3C00AE966F /* AppDelegate.m */,
+				504816612095DDC100AE966F /* BrowserTabViewController.h */,
+				504816622095DDC100AE966F /* BrowserTabViewController.m */,
+				504816642095DFB600AE966F /* WKWebView+DBR.h */,
+				504816652095E00200AE966F /* WKWebView+DBR.m */,
+				504816672095E16C00AE966F /* NSException+DBR.h */,
+				504816682095E16C00AE966F /* NSException+DBR.m */,
 				504816542095DC3D00AE966F /* Assets.xcassets */,
 				504816562095DC3D00AE966F /* LaunchScreen.storyboard */,
 				504816592095DC3D00AE966F /* Info.plist */,
@@ -132,8 +147,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				504816662095E00200AE966F /* WKWebView+DBR.m in Sources */,
 				5048165B2095DC3D00AE966F /* main.m in Sources */,
+				504816692095E16C00AE966F /* NSException+DBR.m in Sources */,
 				5048164D2095DC3C00AE966F /* AppDelegate.m in Sources */,
+				504816632095DDC100AE966F /* BrowserTabViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
