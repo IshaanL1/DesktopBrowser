@@ -10,6 +10,6 @@
 
 @interface BrowserTabViewController : UIViewController
 
-- (UIViewController*)initWithCompletionHandler:(void (^__nullable)(UIViewController*))completion;
++ (UIViewController*)browserTabWithCompletionHandler:(void (^__nullable)(UIViewController*))completion;
 
 @end

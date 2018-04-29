@@ -23,7 +23,7 @@
         [self setWindow:[[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds]];
     }
 
-    UIViewController* vc = [[BrowserTabViewController alloc] initWithCompletionHandler: nil];
+    UIViewController* vc = [BrowserTabViewController browserTabWithCompletionHandler:nil];
 
     [[self window] setRootViewController:vc];
     [[self window] setBackgroundColor:[UIColor whiteColor]];
