@@ -14,6 +14,7 @@
 		504816632095DDC100AE966F /* BrowserTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816622095DDC100AE966F /* BrowserTabViewController.m */; };
 		504816662095E00200AE966F /* WKWebView+DBR.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816652095E00200AE966F /* WKWebView+DBR.m */; };
 		504816692095E16C00AE966F /* NSException+DBR.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816682095E16C00AE966F /* NSException+DBR.m */; };
+		5048166C2095F11F00AE966F /* WebViewScaleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5048166B2095F11F00AE966F /* WebViewScaleController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		504816652095E00200AE966F /* WKWebView+DBR.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+DBR.m"; sourceTree = "<group>"; };
 		504816672095E16C00AE966F /* NSException+DBR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSException+DBR.h"; sourceTree = "<group>"; };
 		504816682095E16C00AE966F /* NSException+DBR.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSException+DBR.m"; sourceTree = "<group>"; };
+		5048166A2095F11F00AE966F /* WebViewScaleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewScaleController.h; sourceTree = "<group>"; };
+		5048166B2095F11F00AE966F /* WebViewScaleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewScaleController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +69,8 @@
 				5048164C2095DC3C00AE966F /* AppDelegate.m */,
 				504816612095DDC100AE966F /* BrowserTabViewController.h */,
 				504816622095DDC100AE966F /* BrowserTabViewController.m */,
+				5048166A2095F11F00AE966F /* WebViewScaleController.h */,
+				5048166B2095F11F00AE966F /* WebViewScaleController.m */,
 				504816642095DFB600AE966F /* WKWebView+DBR.h */,
 				504816652095E00200AE966F /* WKWebView+DBR.m */,
 				504816672095E16C00AE966F /* NSException+DBR.h */,
@@ -147,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5048166C2095F11F00AE966F /* WebViewScaleController.m in Sources */,
 				504816662095E00200AE966F /* WKWebView+DBR.m in Sources */,
 				5048165B2095DC3D00AE966F /* main.m in Sources */,
 				504816692095E16C00AE966F /* NSException+DBR.m in Sources */,
