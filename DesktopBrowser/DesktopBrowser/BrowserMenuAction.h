@@ -22,6 +22,11 @@
 - (instancetype)initWithScale:(double)scale;
 @end
 
+@interface BrowserMenuActionBoolChange: BrowserMenuAction
+@property (nonatomic, readonly) BOOL boolValue;
+- (instancetype)initWithBool:(BOOL)boolValue;
+@end
+
 @interface BrowserMenuActionCloseTab: BrowserMenuAction
 @end
 

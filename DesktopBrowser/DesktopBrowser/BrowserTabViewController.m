@@ -102,6 +102,11 @@
             // if its a scale change action we need to change the scale, but not dismiss the vc
             BrowserMenuActionScaleChange* action = (BrowserMenuActionScaleChange*)_action;
             [[self scaleController] setBrowserScale:action];
+        } else if ([_action isKindOfClass:[BrowserMenuActionBoolChange class]]) {
+            // if JS changes, update the webview and refresh the page
+            BrowserMenuActionBoolChange* action = (BrowserMenuActionBoolChange*)_action;
+            [[[[self webView] configuration] preferences] setJavaScriptEnabled:[action boolValue]];
+            [[self webView] reload];
         }
     };
     UIViewController* menuVC = [BrowserMenuViewController browserMenuForWebView:[self webView]

@@ -20,10 +20,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ucN-qH-YUL">
-                        <rect key="frame" x="8" y="4" width="304" height="43.5"/>
+                        <rect key="frame" x="16" y="4" width="288" height="43.5"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xU2-ua-Wx0">
-                                <rect key="frame" x="0.0" y="0.0" width="96" height="43.5"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xU2-ua-Wx0">
+                                <rect key="frame" x="0.0" y="0.0" width="90.5" height="43.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <state key="normal" title="Minus"/>
                                 <connections>
@@ -31,13 +31,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXl-xK-hPV">
-                                <rect key="frame" x="104" y="0.0" width="96" height="43.5"/>
+                                <rect key="frame" x="98.5" y="0.0" width="91" height="43.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnJ-en-box">
-                                <rect key="frame" x="208" y="0.0" width="96" height="43.5"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NnJ-en-box">
+                                <rect key="frame" x="197.5" y="0.0" width="90.5" height="43.5"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <state key="normal" title="Plus"/>
                                 <connections>
@@ -51,10 +51,10 @@
                     </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="ucN-qH-YUL" secondAttribute="trailing" constant="8" id="1eN-yC-sVB"/>
+                    <constraint firstAttribute="trailing" secondItem="ucN-qH-YUL" secondAttribute="trailing" constant="16" id="1eN-yC-sVB"/>
                     <constraint firstItem="ucN-qH-YUL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="CXo-HD-bcG"/>
                     <constraint firstAttribute="bottom" secondItem="ucN-qH-YUL" secondAttribute="bottom" constant="4" id="Grg-D9-I0d"/>
-                    <constraint firstItem="ucN-qH-YUL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="bGo-zE-ge2"/>
+                    <constraint firstItem="ucN-qH-YUL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="bGo-zE-ge2"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>

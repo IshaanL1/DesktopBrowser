@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xgs-2V-HkS">
-                        <rect key="frame" x="8" y="8" width="304" height="74.5"/>
+                        <rect key="frame" x="16" y="8" width="288" height="74.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="75" id="BQJ-0O-CM8"/>
@@ -30,8 +30,8 @@
                             <outlet property="delegate" destination="KGk-i7-Jjw" id="bIo-gV-Yrb"/>
                         </connections>
                     </textView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCK-x7-kcH">
-                        <rect key="frame" x="268" y="90.5" width="44" height="44"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCK-x7-kcH">
+                        <rect key="frame" x="260" y="90.5" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="6mj-kp-zXb"/>
                             <constraint firstAttribute="height" constant="44" id="ci6-i8-nes"/>
@@ -44,13 +44,13 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="xgs-2V-HkS" secondAttribute="trailing" constant="8" id="9wc-59-fRr"/>
-                    <constraint firstAttribute="trailing" secondItem="pCK-x7-kcH" secondAttribute="trailing" constant="8" id="KIX-Pg-3jm"/>
+                    <constraint firstAttribute="trailing" secondItem="xgs-2V-HkS" secondAttribute="trailing" constant="16" id="9wc-59-fRr"/>
+                    <constraint firstAttribute="trailing" secondItem="pCK-x7-kcH" secondAttribute="trailing" constant="16" id="KIX-Pg-3jm"/>
                     <constraint firstAttribute="bottom" secondItem="pCK-x7-kcH" secondAttribute="bottom" constant="4" id="aOq-6c-9we"/>
                     <constraint firstItem="xgs-2V-HkS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="cCP-Sf-urx"/>
                     <constraint firstItem="pCK-x7-kcH" firstAttribute="top" secondItem="xgs-2V-HkS" secondAttribute="bottom" constant="8" symbolic="YES" id="mhe-Hp-y3c"/>
-                    <constraint firstItem="pCK-x7-kcH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="sjJ-KD-dzT"/>
-                    <constraint firstItem="xgs-2V-HkS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="xky-UX-vRN"/>
+                    <constraint firstItem="pCK-x7-kcH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="sjJ-KD-dzT"/>
+                    <constraint firstItem="xgs-2V-HkS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="xky-UX-vRN"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>

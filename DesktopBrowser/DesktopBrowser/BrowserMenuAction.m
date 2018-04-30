@@ -37,6 +37,16 @@
 }
 @end
 
+@implementation BrowserMenuActionBoolChange
+- (instancetype)initWithBool:(BOOL)boolValue;
+{
+    self = [super init];
+    [NSException throwIfNilObject:self];
+    _boolValue = boolValue;
+    return self;
+}
+@end
+
 @implementation BrowserMenuActionCloseTab
 @end
 

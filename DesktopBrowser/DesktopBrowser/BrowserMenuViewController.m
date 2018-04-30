@@ -12,6 +12,7 @@
 #import "BrowserMenuSectionsAndRows.h"
 #import "UITableViewCell+DBR.h"
 #import "BrowserMenuScaleTableViewCell.h"
+#import "BrowserMenuJavascriptTableViewCell.h"
 
 @interface BrowserMenuViewController () <UIPopoverPresentationControllerDelegate>
 
@@ -60,6 +61,7 @@
     [super viewDidLoad];
     [[self tableView] registerNib:[BrowserMenuURLTableViewCell nib] forCellReuseIdentifier:[BrowserMenuURLTableViewCell reuseIdentifier]];
     [[self tableView] registerNib:[BrowserMenuScaleTableViewCell nib] forCellReuseIdentifier:[BrowserMenuScaleTableViewCell reuseIdentifier]];
+    [[self tableView] registerNib:[BrowserMenuJavascriptTableViewCell nib] forCellReuseIdentifier:[BrowserMenuJavascriptTableViewCell reuseIdentifier]];
     [[self tableView] setEstimatedRowHeight:100];
     [[self tableView] setRowHeight:UITableViewAutomaticDimension];
 }
@@ -76,7 +78,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    NSLog(@"Section: %ld, Row: %ld", indexPath.section, indexPath.row);
     UITableViewCell* cell = nil;
     switch (indexPath.section) {
         case BrowserMenuSectionURL:
@@ -92,7 +93,7 @@
                     cell = [tableView dequeueReusableCellWithIdentifier:[BrowserMenuScaleTableViewCell reuseIdentifier] forIndexPath:indexPath];
                     break;
                 case BrowserMenuSectionScaleJSRowJavascript:
-                    cell = [tableView dequeueReusableCellWithIdentifier:[BrowserMenuScaleTableViewCell reuseIdentifier] forIndexPath:indexPath];
+                    cell = [tableView dequeueReusableCellWithIdentifier:[BrowserMenuJavascriptTableViewCell reuseIdentifier] forIndexPath:indexPath];
                     break;
             }
             break;
@@ -132,6 +133,15 @@
             [welf setCurrentWebViewScale:action];
             block(welf, action);
         }];
+    } else if ([_cell isKindOfClass:[BrowserMenuJavascriptTableViewCell class]]) {
+        BrowserMenuJavascriptTableViewCell* cell = (BrowserMenuJavascriptTableViewCell*)_cell;
+        BOOL jsEnabled = [[[[self webView] configuration] preferences] javaScriptEnabled];
+        [cell setJavascriptAction:[[BrowserMenuActionBoolChange alloc] initWithBool:jsEnabled]];
+        [cell setValueChangedBlock:^(BrowserMenuActionBoolChange * _Nonnull action) {
+            void (^block)(UIViewController* __nonnull, BrowserMenuAction* __nullable) = [welf completion];
+            if (!block) { return; }
+            block(welf, action);
+        }];
     }
 }
 
@@ -145,10 +155,13 @@
         return nil;
     } else if ([_cell isKindOfClass:[BrowserMenuScaleTableViewCell class]]) {
         return nil;
+    } else if ([_cell isKindOfClass:[BrowserMenuJavascriptTableViewCell class]]) {
+        return nil;
     } else {
         return indexPath;
     }
 }
+
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)_cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     if ([_cell isKindOfClass:[BrowserMenuURLTableViewCell class]]) {
