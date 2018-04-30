@@ -19,6 +19,8 @@
 		504816722096BD9D00AE966F /* UIBarButtonItem+DBR.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816712096BD9D00AE966F /* UIBarButtonItem+DBR.m */; };
 		504816752096C3A200AE966F /* BrowserMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816742096C3A200AE966F /* BrowserMenuViewController.m */; };
 		504816782096DB5000AE966F /* BrowserMenuAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816772096DB5000AE966F /* BrowserMenuAction.m */; };
+		5048167C2096DE1900AE966F /* BrowserMenuURLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5048167A2096DE1900AE966F /* BrowserMenuURLTableViewCell.m */; };
+		5048167D2096DE1900AE966F /* BrowserMenuURLTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5048167B2096DE1900AE966F /* BrowserMenuURLTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,9 @@
 		504816742096C3A200AE966F /* BrowserMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowserMenuViewController.m; sourceTree = "<group>"; };
 		504816762096DB5000AE966F /* BrowserMenuAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowserMenuAction.h; sourceTree = "<group>"; };
 		504816772096DB5000AE966F /* BrowserMenuAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowserMenuAction.m; sourceTree = "<group>"; };
+		504816792096DE1900AE966F /* BrowserMenuURLTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowserMenuURLTableViewCell.h; sourceTree = "<group>"; };
+		5048167A2096DE1900AE966F /* BrowserMenuURLTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowserMenuURLTableViewCell.m; sourceTree = "<group>"; };
+		5048167B2096DE1900AE966F /* BrowserMenuURLTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrowserMenuURLTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +88,9 @@
 				504816622095DDC100AE966F /* BrowserTabViewController.m */,
 				504816732096C3A200AE966F /* BrowserMenuViewController.h */,
 				504816742096C3A200AE966F /* BrowserMenuViewController.m */,
+				504816792096DE1900AE966F /* BrowserMenuURLTableViewCell.h */,
+				5048167A2096DE1900AE966F /* BrowserMenuURLTableViewCell.m */,
+				5048167B2096DE1900AE966F /* BrowserMenuURLTableViewCell.xib */,
 				504816762096DB5000AE966F /* BrowserMenuAction.h */,
 				504816772096DB5000AE966F /* BrowserMenuAction.m */,
 				5048166D2095F65C00AE966F /* WebViewToolbarController.h */,
@@ -162,6 +170,7 @@
 			files = (
 				504816582095DC3D00AE966F /* LaunchScreen.storyboard in Resources */,
 				504816552095DC3D00AE966F /* Assets.xcassets in Resources */,
+				5048167D2096DE1900AE966F /* BrowserMenuURLTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +188,7 @@
 				5048165B2095DC3D00AE966F /* main.m in Sources */,
 				504816752096C3A200AE966F /* BrowserMenuViewController.m in Sources */,
 				504816692095E16C00AE966F /* NSException+DBR.m in Sources */,
+				5048167C2096DE1900AE966F /* BrowserMenuURLTableViewCell.m in Sources */,
 				5048166F2095F65C00AE966F /* WebViewToolbarController.m in Sources */,
 				5048164D2095DC3C00AE966F /* AppDelegate.m in Sources */,
 				504816632095DDC100AE966F /* BrowserTabViewController.m in Sources */,
