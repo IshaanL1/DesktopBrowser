@@ -30,14 +30,14 @@
 
 // MARK: INIT
 
-+ (UIViewController*)browserTabWithCompletionHandler:(void (^__nullable)(UIViewController*))completion;
++ (UIViewController*)browserTabWithCompletionHandler:(void (^__nullable)(UIViewController* __nonnull))completion;
 {
     BrowserTabViewController* browserVC = [[BrowserTabViewController alloc] initWithCompletionHandler:completion];
     UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:browserVC];
     return navigationVC;
 }
 
-- (instancetype)initWithCompletionHandler:(void (^__nullable)(UIViewController*))completion;
+- (instancetype)initWithCompletionHandler:(void (^__nullable)(UIViewController* __nonnull))completion;
 {
     self = [super init];
     [NSException throwIfNilObject:self];

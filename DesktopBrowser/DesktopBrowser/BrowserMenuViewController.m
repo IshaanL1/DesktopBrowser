@@ -12,7 +12,7 @@
 @interface BrowserMenuViewController () <UIPopoverPresentationControllerDelegate>
 
 @property (nonatomic, weak, nullable) WKWebView* webView;
-@property (nonatomic, strong, nullable) void (^completion)(UIViewController*);
+@property (nonatomic, strong, nullable) void (^completion)(UIViewController* __nonnull);
 
 @end
 
@@ -22,7 +22,7 @@
 
 + (UIViewController*)browserMenuForWebView:(WKWebView* __nonnull)webView
                    presentingBarButtonItem:(UIBarButtonItem* __nonnull)bbi
-                     withCompletionHandler:(void (^__nullable)(UIViewController*))completion;
+                     withCompletionHandler:(void (^__nullable)(UIViewController* __nonnull))completion;
 {
     BrowserMenuViewController* menuVC = [[BrowserMenuViewController alloc] initWithWebView:webView withCompletionHandler:completion];
     UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:menuVC];
@@ -32,7 +32,7 @@
     return navigationVC;
 }
 
-- (instancetype)initWithWebView:(WKWebView*)webView withCompletionHandler:(void (^__nullable)(UIViewController*))completion;
+- (instancetype)initWithWebView:(WKWebView*)webView withCompletionHandler:(void (^__nullable)(UIViewController* __nonnull))completion;
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     [NSException throwIfNilObject:self];

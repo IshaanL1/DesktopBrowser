@@ -13,5 +13,6 @@
 
 + (UIViewController*)browserMenuForWebView:(WKWebView* __nonnull)webView
                    presentingBarButtonItem:(UIBarButtonItem* __nonnull)bbi
-                     withCompletionHandler:(void (^__nullable)(UIViewController*))completion;
+                     withCompletionHandler:(void (^__nullable)(UIViewController* __nonnull))completion;
+
 @end
