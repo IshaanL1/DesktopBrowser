@@ -12,11 +12,13 @@
 
 - (IBAction)backButtonTapped:(id)sender;
 - (IBAction)forwardButtonTapped:(id)sender;
+- (IBAction)menuButtonTapped:(id)sender;
 
 @end
 
 @interface UIBarButtonItem (DBR)
 
++ (instancetype)newMenuButtonItemWithTarget:(id<UIBarButtonItemBackAndForwardable> __nonnull)target;
 + (instancetype)newDisabledBackButtonItemWithTarget:(id<UIBarButtonItemBackAndForwardable> __nonnull)target;
 + (instancetype)newDisabledForwardButtonItemWithTarget:(id<UIBarButtonItemBackAndForwardable> __nonnull)target;
 

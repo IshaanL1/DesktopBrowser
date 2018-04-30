@@ -10,6 +10,12 @@
 
 @implementation UIBarButtonItem (DBR)
 
++ (instancetype)newMenuButtonItemWithTarget:(id<UIBarButtonItemBackAndForwardable> __nonnull)target;
+{
+    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"⚙︎" style:UIBarButtonItemStyleDone target:target action:@selector(menuButtonTapped:)];
+    return item;
+}
+
 + (instancetype)newDisabledBackButtonItemWithTarget:(id<UIBarButtonItemBackAndForwardable> __nonnull)target;
 {
     UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithTitle:@"〈" style:UIBarButtonItemStyleDone target:target action:@selector(backButtonTapped:)];

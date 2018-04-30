@@ -12,6 +12,7 @@
 #import "WebViewScaleController.h"
 #import "WebViewToolbarController.h"
 #import "UIBarButtonItem+DBR.h"
+#import "BrowserMenuViewController.h"
 
 @interface BrowserTabViewController () <UIBarButtonItemBackAndForwardable>
 
@@ -21,6 +22,7 @@
 @property (nonatomic, strong, nonnull) WebViewToolbarController* toolbarController;
 @property (nonatomic, strong, nonnull) UIBarButtonItem* backButton;
 @property (nonatomic, strong, nonnull) UIBarButtonItem* forwardButton;
+@property (nonatomic, strong, nonnull) UIBarButtonItem* menuButton;
 
 @end
 
@@ -46,6 +48,7 @@
     _webView = webView;
     _backButton = [UIBarButtonItem newDisabledBackButtonItemWithTarget:self];
     _forwardButton = [UIBarButtonItem newDisabledForwardButtonItemWithTarget:self];
+    _menuButton = [UIBarButtonItem newMenuButtonItemWithTarget:self];
     return self;
 }
 
@@ -56,6 +59,7 @@
     [super viewDidLoad];
 
     // configure toolbar items
+    [[self navigationItem] setRightBarButtonItems:@[[self menuButton]]];
     [[self navigationItem] setLeftBarButtonItems:@[[self backButton], [self forwardButton]]];
     [[self toolbarController] setBackButton:[self backButton]];
     [[self toolbarController] setForwardButton:[self forwardButton]];
@@ -84,6 +88,12 @@
 - (IBAction)forwardButtonTapped:(id)sender;
 {
     [[self webView] goForward];
+}
+
+- (IBAction)menuButtonTapped:(id)sender;
+{
+    UIViewController* menuVC = [BrowserMenuViewController browserMenuForWebView:[self webView] presentingBarButtonItem:sender withCompletionHandler:nil];
+    [self presentViewController:menuVC animated:YES completion:nil];
 }
 
 // MARK: Handle Screen Changing Size
