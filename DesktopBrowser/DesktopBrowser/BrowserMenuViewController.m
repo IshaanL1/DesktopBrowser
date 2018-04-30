@@ -135,6 +135,20 @@
     }
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    // don't allow certain cells to be selected
+    UITableViewCell* _cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (!_cell) {
+        return nil;
+    } else if ([_cell isKindOfClass:[BrowserMenuURLTableViewCell class]]) {
+        return nil;
+    } else if ([_cell isKindOfClass:[BrowserMenuScaleTableViewCell class]]) {
+        return nil;
+    } else {
+        return indexPath;
+    }
+}
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)_cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     if ([_cell isKindOfClass:[BrowserMenuURLTableViewCell class]]) {
