@@ -8,11 +8,12 @@
 
 @import UIKit;
 @import WebKit;
+#import "BrowserMenuAction.h"
 
 @interface BrowserMenuViewController : UITableViewController
 
 + (UIViewController*)browserMenuForWebView:(WKWebView* __nonnull)webView
                    presentingBarButtonItem:(UIBarButtonItem* __nonnull)bbi
-                     withCompletionHandler:(void (^__nullable)(UIViewController* __nonnull))completion;
+                     withCompletionHandler:(void (^__nullable)(UIViewController* __nonnull, BrowserMenuAction* __nonnull))completion;
 
 @end
