@@ -11,8 +11,9 @@
 #import "WKWebView+DBR.h"
 #import "WebViewScaleController.h"
 #import "WebViewToolbarController.h"
+#import "UIBarButtonItem+DBR.h"
 
-@interface BrowserTabViewController ()
+@interface BrowserTabViewController () <UIBarButtonItemBackAndForwardable>
 
 @property (nonatomic, strong, nullable) void (^completion)(UIViewController*);
 @property (nonatomic, strong, nonnull) WKWebView* webView;
@@ -24,6 +25,8 @@
 @end
 
 @implementation BrowserTabViewController
+
+// MARK: INIT
 
 + (UIViewController*)browserTabWithCompletionHandler:(void (^__nullable)(UIViewController*))completion;
 {
@@ -41,14 +44,21 @@
     _scaleController = [[WebViewScaleController alloc] initWithManagedWebView: webView];
     _toolbarController = [[WebViewToolbarController alloc] initWithManagedWebView:webView];
     _webView = webView;
+    _backButton = [UIBarButtonItem newDisabledBackButtonItemWithTarget:self];
+    _forwardButton = [UIBarButtonItem newDisabledForwardButtonItemWithTarget:self];
     return self;
 }
+
+// MARK: Lifecycle Methods
 
 - (void)viewDidLoad;
 {
     [super viewDidLoad];
 
     // configure toolbar items
+    [[self navigationItem] setLeftBarButtonItems:@[[self backButton], [self forwardButton]]];
+    [[self toolbarController] setBackButton:[self backButton]];
+    [[self toolbarController] setForwardButton:[self forwardButton]];
     [[self toolbarController] setNavigationItem:[self navigationItem]];
 
     // configure the webview constraints
@@ -63,6 +73,20 @@
     NSURLRequest* request = [[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:@"https://theverge.com"]];
     [[self webView] loadRequest:request];
 }
+
+// MARK: UIBarButtonItemBackAndForwardable
+
+- (IBAction)backButtonTapped:(id)sender;
+{
+    [[self webView] goBack];
+}
+
+- (IBAction)forwardButtonTapped:(id)sender;
+{
+    [[self webView] goForward];
+}
+
+// MARK: Handle Screen Changing Size
 
 - (void)viewSafeAreaInsetsDidChange;
 {

@@ -16,6 +16,7 @@
 		504816692095E16C00AE966F /* NSException+DBR.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816682095E16C00AE966F /* NSException+DBR.m */; };
 		5048166C2095F11F00AE966F /* WebViewScaleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5048166B2095F11F00AE966F /* WebViewScaleController.m */; };
 		5048166F2095F65C00AE966F /* WebViewToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5048166E2095F65C00AE966F /* WebViewToolbarController.m */; };
+		504816722096BD9D00AE966F /* UIBarButtonItem+DBR.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816712096BD9D00AE966F /* UIBarButtonItem+DBR.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,8 @@
 		5048166B2095F11F00AE966F /* WebViewScaleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewScaleController.m; sourceTree = "<group>"; };
 		5048166D2095F65C00AE966F /* WebViewToolbarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewToolbarController.h; sourceTree = "<group>"; };
 		5048166E2095F65C00AE966F /* WebViewToolbarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewToolbarController.m; sourceTree = "<group>"; };
+		504816702096BD9D00AE966F /* UIBarButtonItem+DBR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DBR.h"; sourceTree = "<group>"; };
+		504816712096BD9D00AE966F /* UIBarButtonItem+DBR.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+DBR.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,8 @@
 				5048166E2095F65C00AE966F /* WebViewToolbarController.m */,
 				5048166A2095F11F00AE966F /* WebViewScaleController.h */,
 				5048166B2095F11F00AE966F /* WebViewScaleController.m */,
+				504816702096BD9D00AE966F /* UIBarButtonItem+DBR.h */,
+				504816712096BD9D00AE966F /* UIBarButtonItem+DBR.m */,
 				504816642095DFB600AE966F /* WKWebView+DBR.h */,
 				504816652095E00200AE966F /* WKWebView+DBR.m */,
 				504816672095E16C00AE966F /* NSException+DBR.h */,
@@ -158,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5048166C2095F11F00AE966F /* WebViewScaleController.m in Sources */,
+				504816722096BD9D00AE966F /* UIBarButtonItem+DBR.m in Sources */,
 				504816662095E00200AE966F /* WKWebView+DBR.m in Sources */,
 				5048165B2095DC3D00AE966F /* main.m in Sources */,
 				504816692095E16C00AE966F /* NSException+DBR.m in Sources */,
