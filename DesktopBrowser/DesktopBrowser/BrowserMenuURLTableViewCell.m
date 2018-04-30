@@ -29,9 +29,9 @@
 
 - (IBAction)goButtonTapped:(id)sender;
 {
-    if ([self urlConfirmedBlock]) {
-        [self urlConfirmedBlock]([[self textView] text]);
-    }
+    void (^block)(NSString* __nonnull) = [self urlConfirmedBlock];
+    if (!block) { return; }
+    block([[self textView] text]);
 }
 
 - (void)setURLString:(NSString*)newURL;

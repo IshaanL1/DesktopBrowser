@@ -75,8 +75,12 @@
     if ([_cell isKindOfClass:[BrowserMenuURLTableViewCell class]]) {
         BrowserMenuURLTableViewCell* cell = (BrowserMenuURLTableViewCell*)_cell;
         [cell setURLString:[[[self webView] URL] absoluteString]];
+        __weak BrowserMenuViewController *welf = self;
         [cell setUrlConfirmedBlock:^(NSString* newURLString) {
-            NSLog(@"Time to browse to: %@", newURLString);
+            void (^block)(UIViewController* __nonnull, BrowserMenuAction* __nullable) = [welf completion];
+            if (!block) { return; }
+            BrowserMenuActionURLChange* action = [[BrowserMenuActionURLChange alloc] initWithURLString:newURLString];
+            block(welf, action);
         }];
     }
 }

@@ -74,8 +74,7 @@
 
     // fake stuff to make it work while building the app
     [[self scaleController] setBrowserScale:3];
-    NSURLRequest* request = [[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:@"https://theverge.com"]];
-    [[self webView] loadRequest:request];
+
 }
 
 // MARK: UIBarButtonItemBackAndForwardable
@@ -92,8 +91,28 @@
 
 - (IBAction)menuButtonTapped:(id)sender;
 {
-    UIViewController* menuVC = [BrowserMenuViewController browserMenuForWebView:[self webView] presentingBarButtonItem:sender withCompletionHandler:nil];
+    __weak BrowserTabViewController *welf = self;
+    void (^action)(UIViewController* __nonnull, BrowserMenuAction* __nullable) = ^(UIViewController* vc, BrowserMenuAction* _action) {
+        if (!_action) {
+            // if action is nil, don't do anything, just dismiss
+            [vc dismissViewControllerAnimated:YES completion:nil];
+        } else if ([_action isKindOfClass:[BrowserMenuActionURLChange class]]) {
+            // if its a URLChange action we need to load the page and dismiss the vc
+            BrowserMenuActionURLChange* action = (BrowserMenuActionURLChange*)_action;
+            [welf loadURLString:[action urlString]];
+            [vc dismissViewControllerAnimated:YES completion:nil];
+        }
+    };
+    UIViewController* menuVC = [BrowserMenuViewController browserMenuForWebView:[self webView]
+                                                        presentingBarButtonItem:sender
+                                                          withCompletionHandler:action];
     [self presentViewController:menuVC animated:YES completion:nil];
+}
+
+- (void)loadURLString:(NSString*)urlString;
+{
+    NSURLRequest* request = [[NSURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:urlString]];
+    [[self webView] loadRequest:request];
 }
 
 // MARK: Handle Screen Changing Size
