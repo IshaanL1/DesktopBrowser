@@ -46,4 +46,13 @@
     [self setUrlConfirmedBlock:nil];
 }
 
+// MARK: UITextViewDelegate
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
+{
+    if (![text isEqualToString:@"\n"]) { return YES; }
+    [textView resignFirstResponder];
+    return NO;
+}
+
 @end
