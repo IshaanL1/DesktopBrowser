@@ -75,8 +75,8 @@
     if ([_cell isKindOfClass:[BrowserMenuURLTableViewCell class]]) {
         BrowserMenuURLTableViewCell* cell = (BrowserMenuURLTableViewCell*)_cell;
         [cell setURLString:[[[self webView] URL] absoluteString]];
-        [cell setUrlConfirmedBlock:^{
-            NSLog(@"Go button tapped");
+        [cell setUrlConfirmedBlock:^(NSString* newURLString) {
+            NSLog(@"Time to browse to: %@", newURLString);
         }];
     }
 }

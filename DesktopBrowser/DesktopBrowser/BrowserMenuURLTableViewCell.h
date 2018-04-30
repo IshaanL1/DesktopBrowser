@@ -10,7 +10,7 @@
 
 @interface BrowserMenuURLTableViewCell : UITableViewCell
 
-@property (nonatomic, strong, nullable) void (^urlConfirmedBlock)(void);
+@property (nonatomic, strong, nullable) void (^urlConfirmedBlock)(NSString* __nonnull);
 
 + (UINib*)nib;
 + (NSString*)reuseIdentifier;

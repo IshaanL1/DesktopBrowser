@@ -30,7 +30,7 @@
 - (IBAction)goButtonTapped:(id)sender;
 {
     if ([self urlConfirmedBlock]) {
-        [self urlConfirmedBlock]();
+        [self urlConfirmedBlock]([[self textView] text]);
     }
 }
 
