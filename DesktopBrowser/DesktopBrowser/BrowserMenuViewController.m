@@ -9,6 +9,7 @@
 #import "BrowserMenuViewController.h"
 #import "NSException+DBR.h"
 #import "BrowserMenuURLTableViewCell.h"
+#import "BrowserMenuSectionsAndRows.h"
 
 @interface BrowserMenuViewController () <UIPopoverPresentationControllerDelegate>
 
@@ -56,12 +57,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
 {
-    return 1;
+    return BrowserMenuSectionCount;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    return 1;
+    return browserMenuSectionRowCountForSection(section);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -91,6 +92,11 @@
         BrowserMenuURLTableViewCell* cell = (BrowserMenuURLTableViewCell*)_cell;
         [cell setUrlConfirmedBlock:nil];
     }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;
+{
+    return browserMenuSectionTitleForSection(section);
 }
 
 // MARK: UIPopoverPresentationControllerDelegate

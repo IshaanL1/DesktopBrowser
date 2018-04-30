@@ -50,6 +50,7 @@
 		504816792096DE1900AE966F /* BrowserMenuURLTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowserMenuURLTableViewCell.h; sourceTree = "<group>"; };
 		5048167A2096DE1900AE966F /* BrowserMenuURLTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowserMenuURLTableViewCell.m; sourceTree = "<group>"; };
 		5048167B2096DE1900AE966F /* BrowserMenuURLTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrowserMenuURLTableViewCell.xib; sourceTree = "<group>"; };
+		5048167E20971F8D00AE966F /* BrowserMenuSectionsAndRows.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowserMenuSectionsAndRows.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +89,7 @@
 				504816622095DDC100AE966F /* BrowserTabViewController.m */,
 				504816732096C3A200AE966F /* BrowserMenuViewController.h */,
 				504816742096C3A200AE966F /* BrowserMenuViewController.m */,
+				5048167E20971F8D00AE966F /* BrowserMenuSectionsAndRows.h */,
 				504816792096DE1900AE966F /* BrowserMenuURLTableViewCell.h */,
 				5048167A2096DE1900AE966F /* BrowserMenuURLTableViewCell.m */,
 				5048167B2096DE1900AE966F /* BrowserMenuURLTableViewCell.xib */,
