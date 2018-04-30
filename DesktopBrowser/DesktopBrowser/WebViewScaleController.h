@@ -7,13 +7,15 @@
 //
 
 @import WebKit;
+#import "BrowserMenuAction.h"
 
 @interface WebViewScaleController : NSObject
 
 @property (nonatomic, weak, readonly) WKWebView* webView;
-@property (nonatomic) CGFloat browserScale;
+@property (nonatomic, strong) BrowserMenuActionScaleChange* __nonnull browserScale;
 
 - (instancetype)initWithManagedWebView:(WKWebView*)webView;
 - (void)updateWebViewContentInsetsForCurrentScaleWithSafeAreaInsets:(UIEdgeInsets) safeAreaInsets;
+- (void)viewDidLoad;
 
 @end

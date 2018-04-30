@@ -23,11 +23,16 @@
 @end
 
 @implementation BrowserMenuActionScaleChange
-- (instancetype)initWithScaleNumber:(NSNumber*)scale;
+/// this method is smart enough to know whether the passed in value is valid
+/// initializer returns NIL if the value is invalid
+- (instancetype)initWithScale:(double)scale;
 {
     self = [super init];
     [NSException throwIfNilObject:self];
-    _scaleNumber = scale;
+    if (scale < 1 || scale > 4) {
+        return nil;
+    }
+    _scale = scale;
     return self;
 }
 @end

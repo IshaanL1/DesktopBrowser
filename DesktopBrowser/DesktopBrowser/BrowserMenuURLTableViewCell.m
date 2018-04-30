@@ -16,17 +16,6 @@
 
 @implementation BrowserMenuURLTableViewCell
 
-+ (UINib*)nib;
-{
-    Class class = [self class];
-    return [UINib nibWithNibName:NSStringFromClass(class) bundle:[NSBundle bundleForClass:class]];
-}
-+ (NSString*)reuseIdentifier;
-{
-    Class class = [self class];
-    return NSStringFromClass(class);
-}
-
 - (IBAction)goButtonTapped:(id)sender;
 {
     void (^block)(NSString* __nonnull) = [self urlConfirmedBlock];

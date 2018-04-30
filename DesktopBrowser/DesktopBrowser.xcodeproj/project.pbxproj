@@ -21,6 +21,9 @@
 		504816782096DB5000AE966F /* BrowserMenuAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816772096DB5000AE966F /* BrowserMenuAction.m */; };
 		5048167C2096DE1900AE966F /* BrowserMenuURLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5048167A2096DE1900AE966F /* BrowserMenuURLTableViewCell.m */; };
 		5048167D2096DE1900AE966F /* BrowserMenuURLTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5048167B2096DE1900AE966F /* BrowserMenuURLTableViewCell.xib */; };
+		504816822097233A00AE966F /* BrowserMenuScaleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816802097233A00AE966F /* BrowserMenuScaleTableViewCell.m */; };
+		504816832097233A00AE966F /* BrowserMenuScaleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 504816812097233A00AE966F /* BrowserMenuScaleTableViewCell.xib */; };
+		504816862097251500AE966F /* UITableViewCell+DBR.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816852097251500AE966F /* UITableViewCell+DBR.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,11 @@
 		5048167A2096DE1900AE966F /* BrowserMenuURLTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowserMenuURLTableViewCell.m; sourceTree = "<group>"; };
 		5048167B2096DE1900AE966F /* BrowserMenuURLTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrowserMenuURLTableViewCell.xib; sourceTree = "<group>"; };
 		5048167E20971F8D00AE966F /* BrowserMenuSectionsAndRows.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowserMenuSectionsAndRows.h; sourceTree = "<group>"; };
+		5048167F2097233A00AE966F /* BrowserMenuScaleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowserMenuScaleTableViewCell.h; sourceTree = "<group>"; };
+		504816802097233A00AE966F /* BrowserMenuScaleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowserMenuScaleTableViewCell.m; sourceTree = "<group>"; };
+		504816812097233A00AE966F /* BrowserMenuScaleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BrowserMenuScaleTableViewCell.xib; sourceTree = "<group>"; };
+		504816842097251500AE966F /* UITableViewCell+DBR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+DBR.h"; sourceTree = "<group>"; };
+		504816852097251500AE966F /* UITableViewCell+DBR.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+DBR.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +101,9 @@
 				504816792096DE1900AE966F /* BrowserMenuURLTableViewCell.h */,
 				5048167A2096DE1900AE966F /* BrowserMenuURLTableViewCell.m */,
 				5048167B2096DE1900AE966F /* BrowserMenuURLTableViewCell.xib */,
+				5048167F2097233A00AE966F /* BrowserMenuScaleTableViewCell.h */,
+				504816802097233A00AE966F /* BrowserMenuScaleTableViewCell.m */,
+				504816812097233A00AE966F /* BrowserMenuScaleTableViewCell.xib */,
 				504816762096DB5000AE966F /* BrowserMenuAction.h */,
 				504816772096DB5000AE966F /* BrowserMenuAction.m */,
 				5048166D2095F65C00AE966F /* WebViewToolbarController.h */,
@@ -105,6 +116,8 @@
 				504816652095E00200AE966F /* WKWebView+DBR.m */,
 				504816672095E16C00AE966F /* NSException+DBR.h */,
 				504816682095E16C00AE966F /* NSException+DBR.m */,
+				504816842097251500AE966F /* UITableViewCell+DBR.h */,
+				504816852097251500AE966F /* UITableViewCell+DBR.m */,
 				504816542095DC3D00AE966F /* Assets.xcassets */,
 				504816562095DC3D00AE966F /* LaunchScreen.storyboard */,
 				504816592095DC3D00AE966F /* Info.plist */,
@@ -172,6 +185,7 @@
 			files = (
 				504816582095DC3D00AE966F /* LaunchScreen.storyboard in Resources */,
 				504816552095DC3D00AE966F /* Assets.xcassets in Resources */,
+				504816832097233A00AE966F /* BrowserMenuScaleTableViewCell.xib in Resources */,
 				5048167D2096DE1900AE966F /* BrowserMenuURLTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -185,6 +199,7 @@
 			files = (
 				5048166C2095F11F00AE966F /* WebViewScaleController.m in Sources */,
 				504816782096DB5000AE966F /* BrowserMenuAction.m in Sources */,
+				504816862097251500AE966F /* UITableViewCell+DBR.m in Sources */,
 				504816722096BD9D00AE966F /* UIBarButtonItem+DBR.m in Sources */,
 				504816662095E00200AE966F /* WKWebView+DBR.m in Sources */,
 				5048165B2095DC3D00AE966F /* main.m in Sources */,
@@ -193,6 +208,7 @@
 				5048167C2096DE1900AE966F /* BrowserMenuURLTableViewCell.m in Sources */,
 				5048166F2095F65C00AE966F /* WebViewToolbarController.m in Sources */,
 				5048164D2095DC3C00AE966F /* AppDelegate.m in Sources */,
+				504816822097233A00AE966F /* BrowserMenuScaleTableViewCell.m in Sources */,
 				504816632095DDC100AE966F /* BrowserTabViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

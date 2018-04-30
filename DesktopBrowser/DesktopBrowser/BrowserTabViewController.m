@@ -71,10 +71,7 @@
                                   [[[self view] centerXAnchor] constraintEqualToAnchor:[[self webView] centerXAnchor]],
                                   [[[self view] centerYAnchor] constraintEqualToAnchor:[[self webView] centerYAnchor]],
                                   ]];
-
-    // fake stuff to make it work while building the app
-    [[self scaleController] setBrowserScale:3];
-
+    [[self scaleController] viewDidLoad];
 }
 
 // MARK: UIBarButtonItemBackAndForwardable
@@ -101,9 +98,14 @@
             BrowserMenuActionURLChange* action = (BrowserMenuActionURLChange*)_action;
             [welf loadURLString:[action urlString]];
             [vc dismissViewControllerAnimated:YES completion:nil];
+        } else if ([_action isKindOfClass:[BrowserMenuActionScaleChange class]]) {
+            // if its a scale change action we need to change the scale, but not dismiss the vc
+            BrowserMenuActionScaleChange* action = (BrowserMenuActionScaleChange*)_action;
+            [[self scaleController] setBrowserScale:action];
         }
     };
     UIViewController* menuVC = [BrowserMenuViewController browserMenuForWebView:[self webView]
+                                                            currentWebViewScale:[[self scaleController] browserScale]
                                                         presentingBarButtonItem:sender
                                                           withCompletionHandler:action];
     [self presentViewController:menuVC animated:YES completion:nil];

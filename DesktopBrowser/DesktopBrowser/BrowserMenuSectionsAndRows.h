@@ -16,6 +16,12 @@ typedef NS_ENUM(NSInteger, BrowserMenuSection) {
 
 static const NSInteger BrowserMenuSectionCount = 3;
 
+typedef NS_ENUM(NSInteger, BrowserMenuSectionURLRow) {
+    BrowserMenuSectionURLRowURL
+};
+
+static const NSInteger BrowserMenuSectionURLRowCount = 1;
+
 typedef NS_ENUM(NSInteger, BrowserMenuSectionScaleJSRow) {
     BrowserMenuSectionScaleJSRowScale,
     BrowserMenuSectionScaleJSRowJavascript
@@ -28,17 +34,17 @@ typedef NS_ENUM(NSInteger, BrowserMenuSectionHideCloseRow) {
     BrowserMenuSectionHideCloseRowClose
 };
 
-static const NSInteger BrowserMenuSectionHideCloseRowCount = 2;
+static const NSInteger BrowserMenuSectionHideCloseRowCount = 0;
 
 static NSInteger browserMenuSectionRowCountForSection(BrowserMenuSection section)
 {
     switch (section) {
         case BrowserMenuSectionURL:
-            return 1;
+            return BrowserMenuSectionURLRowCount;
         case BrowserMenuSectionScaleJS:
-            return 0;
+            return BrowserMenuSectionScaleJSRowCount;
         case BrowserMenuSectionHideClose:
-            return 0;
+            return BrowserMenuSectionHideCloseRowCount;
         default:
             [NSException throwIfNilObject:nil];
     }

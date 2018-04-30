@@ -12,9 +12,6 @@
 
 @property (nonatomic, strong, nullable) void (^urlConfirmedBlock)(NSString* __nonnull);
 
-+ (UINib*)nib;
-+ (NSString*)reuseIdentifier;
-
 - (void)setURLString:(NSString* __nonnull)newURL;
 
 @end

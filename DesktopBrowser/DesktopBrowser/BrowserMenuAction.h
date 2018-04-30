@@ -18,8 +18,8 @@
 @end
 
 @interface BrowserMenuActionScaleChange: BrowserMenuAction
-@property (nonatomic, strong, readonly) NSNumber* scaleNumber;
-- (instancetype)initWithScaleNumber:(NSNumber*)scale;
+@property (nonatomic, readonly) double scale;
+- (instancetype)initWithScale:(double)scale;
 @end
 
 @interface BrowserMenuActionCloseTab: BrowserMenuAction

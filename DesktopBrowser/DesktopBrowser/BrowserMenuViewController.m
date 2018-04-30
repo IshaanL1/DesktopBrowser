@@ -10,11 +10,14 @@
 #import "NSException+DBR.h"
 #import "BrowserMenuURLTableViewCell.h"
 #import "BrowserMenuSectionsAndRows.h"
+#import "UITableViewCell+DBR.h"
+#import "BrowserMenuScaleTableViewCell.h"
 
 @interface BrowserMenuViewController () <UIPopoverPresentationControllerDelegate>
 
 @property (nonatomic, weak, nullable) WKWebView* webView;
 @property (nonatomic, strong, nullable) void (^completion)(UIViewController* __nonnull, BrowserMenuAction* __nonnull);
+@property (nonatomic, strong, nonnull) BrowserMenuActionScaleChange* currentWebViewScale;
 
 @end
 
@@ -23,10 +26,13 @@
 // MARK: INIT
 
 + (UIViewController*)browserMenuForWebView:(WKWebView* __nonnull)webView
+                       currentWebViewScale:(BrowserMenuActionScaleChange* __nonnull)scale
                    presentingBarButtonItem:(UIBarButtonItem* __nonnull)bbi
-                     withCompletionHandler:(void (^__nullable)(UIViewController* __nonnull, BrowserMenuAction* __nonnull))completion;
+                     withCompletionHandler:(void (^__nullable)(UIViewController* __nonnull, BrowserMenuAction* __nullable))completion;
 {
-    BrowserMenuViewController* menuVC = [[BrowserMenuViewController alloc] initWithWebView:webView withCompletionHandler:completion];
+    BrowserMenuViewController* menuVC = [[BrowserMenuViewController alloc] initWithWebView:webView
+                                                                       currentWebViewScale:scale
+                                                                     withCompletionHandler:completion];
     [menuVC setTitle:@"Menu"];
     UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:menuVC];
     [navigationVC setModalPresentationStyle:UIModalPresentationPopover];
@@ -36,12 +42,14 @@
 }
 
 - (instancetype)initWithWebView:(WKWebView*)webView
+            currentWebViewScale:(BrowserMenuActionScaleChange* __nonnull)scale
           withCompletionHandler:(void (^__nullable)(UIViewController* __nonnull, BrowserMenuAction* __nonnull))completion;
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     [NSException throwIfNilObject:self];
     _webView = webView;
     _completion = completion;
+    _currentWebViewScale = scale;
     return self;
 }
 
@@ -51,6 +59,7 @@
 {
     [super viewDidLoad];
     [[self tableView] registerNib:[BrowserMenuURLTableViewCell nib] forCellReuseIdentifier:[BrowserMenuURLTableViewCell reuseIdentifier]];
+    [[self tableView] registerNib:[BrowserMenuScaleTableViewCell nib] forCellReuseIdentifier:[BrowserMenuScaleTableViewCell reuseIdentifier]];
     [[self tableView] setEstimatedRowHeight:100];
     [[self tableView] setRowHeight:UITableViewAutomaticDimension];
 }
@@ -67,20 +76,60 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:[BrowserMenuURLTableViewCell reuseIdentifier] forIndexPath:indexPath];
+    NSLog(@"Section: %ld, Row: %ld", indexPath.section, indexPath.row);
+    UITableViewCell* cell = nil;
+    switch (indexPath.section) {
+        case BrowserMenuSectionURL:
+            switch (indexPath.row) {
+                case BrowserMenuSectionURLRowURL:
+                    cell = [tableView dequeueReusableCellWithIdentifier:[BrowserMenuURLTableViewCell reuseIdentifier] forIndexPath:indexPath];
+                    break;
+            }
+            break;
+        case BrowserMenuSectionScaleJS:
+            switch (indexPath.row) {
+                case BrowserMenuSectionScaleJSRowScale:
+                    cell = [tableView dequeueReusableCellWithIdentifier:[BrowserMenuScaleTableViewCell reuseIdentifier] forIndexPath:indexPath];
+                    break;
+                case BrowserMenuSectionScaleJSRowJavascript:
+                    cell = [tableView dequeueReusableCellWithIdentifier:[BrowserMenuScaleTableViewCell reuseIdentifier] forIndexPath:indexPath];
+                    break;
+            }
+            break;
+        case BrowserMenuSectionHideClose:
+            switch (indexPath.row) {
+                case BrowserMenuSectionHideCloseRowHide:
+                    break;
+                case BrowserMenuSectionHideCloseRowClose:
+                    break;
+            }
+            break;
+        default:
+            break;
+    }
+    [NSException throwIfNilObject:cell];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)_cell forRowAtIndexPath:(NSIndexPath *)indexPath;
 {
+    __weak BrowserMenuViewController *welf = self;
     if ([_cell isKindOfClass:[BrowserMenuURLTableViewCell class]]) {
         BrowserMenuURLTableViewCell* cell = (BrowserMenuURLTableViewCell*)_cell;
         [cell setURLString:[[[self webView] URL] absoluteString]];
-        __weak BrowserMenuViewController *welf = self;
         [cell setUrlConfirmedBlock:^(NSString* newURLString) {
             void (^block)(UIViewController* __nonnull, BrowserMenuAction* __nullable) = [welf completion];
             if (!block) { return; }
             BrowserMenuActionURLChange* action = [[BrowserMenuActionURLChange alloc] initWithURLString:newURLString];
+            block(welf, action);
+        }];
+    } else if ([_cell isKindOfClass:[BrowserMenuScaleTableViewCell class]]) {
+        BrowserMenuScaleTableViewCell* cell = (BrowserMenuScaleTableViewCell*)_cell;
+        [cell setScale:[self currentWebViewScale]];
+        [cell setScaleChangedBlock:^(BrowserMenuActionScaleChange* _Nonnull action) {
+            void (^block)(UIViewController* __nonnull, BrowserMenuAction* __nullable) = [welf completion];
+            if (!block) { return; }
+            [welf setCurrentWebViewScale:action];
             block(welf, action);
         }];
     }
@@ -91,6 +140,9 @@
     if ([_cell isKindOfClass:[BrowserMenuURLTableViewCell class]]) {
         BrowserMenuURLTableViewCell* cell = (BrowserMenuURLTableViewCell*)_cell;
         [cell setUrlConfirmedBlock:nil];
+    } else if ([_cell isKindOfClass:[BrowserMenuScaleTableViewCell class]]) {
+        BrowserMenuScaleTableViewCell* cell = (BrowserMenuScaleTableViewCell*)_cell;
+        [cell setScaleChangedBlock:nil];
     }
 }
 
