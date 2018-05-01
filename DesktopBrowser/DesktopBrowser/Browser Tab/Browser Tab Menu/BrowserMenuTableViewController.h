@@ -13,8 +13,8 @@
 @protocol BrowserMenuTableViewControllerDelegate
 
 - (void)userDidChangeURLString:(NSString* __nonnull)newURLString;
-- (void)userDidChangeWebViewScale:(BrowserMenuActionScaleChange*)action;
-- (void)userDidChangeJSEnabled:(BOOL)jsEnabled;
+- (void)userDidChangeWebViewScale:(double)newScale;
+- (void)userDidChangeJSEnabled:(BOOL)newJSEnabled;
 - (void)userDidSelectHideTab;
 - (void)userDidSelectCloseTab;
 

@@ -76,20 +76,21 @@
 - (void)userSelectedTabConfiguration:(BrowserTabConfiguration* __nonnull)configuration;
 {
     __weak TabListViewController* welf = self;
-    UIViewController* tabVC = [BrowserTabViewController browserTabWithConfiguration:configuration
-                                                        configurationChangeDelegate:self
-                                                                  completionHandler:^(UIViewController * _Nonnull vc, BrowserTabConfiguration * _Nonnull configuration, BrowserMenuAction * _Nullable action)
-    {
-        if (!action || [action isKindOfClass:[BrowserMenuActionHideTab class]]) {
-            [vc dismissViewControllerAnimated:YES completion:nil];
-        } else if ([action isKindOfClass:[BrowserMenuActionCloseTab class]]) {
-            [vc dismissViewControllerAnimated:YES completion:^{
-                NSInteger idx = [[self tabs] indexOfObject:configuration];
-                NSIndexPath* indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
-                [welf userDeletedTabConfigurationAtIndexPath:indexPath withCompletionHandler:nil];
-            }];
-        }
-    }];
+    UIViewController* tabVC =
+    [BrowserTabViewController browserTabWithConfiguration:configuration
+                              configurationChangeDelegate:self
+                                        completionHandler:^(UIViewController * _Nonnull vc, BrowserTabConfiguration * _Nonnull configuration, BOOL shouldDelete)
+     {
+         if (shouldDelete) {
+             [vc dismissViewControllerAnimated:YES completion:^{
+                 NSInteger idx = [[self tabs] indexOfObject:configuration];
+                 NSIndexPath* indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+                 [welf userDeletedTabConfigurationAtIndexPath:indexPath withCompletionHandler:nil];
+             }];
+         } else {
+             [vc dismissViewControllerAnimated:YES completion:nil];
+         }
+     }];
     [self presentViewController:tabVC animated:YES completion:nil];
 }
 

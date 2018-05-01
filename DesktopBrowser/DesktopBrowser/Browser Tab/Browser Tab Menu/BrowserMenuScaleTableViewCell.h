@@ -9,12 +9,9 @@
 @import UIKit;
 #import "BrowserMenuAction.h"
 
-typedef void (^BrowserMenuScaleTableViewCellScaleChangedBlock)(BrowserMenuActionScaleChange* __nonnull action);
+typedef void (^BrowserMenuScaleTableViewCellScaleChangedBlock)(double scale);
 
 @interface BrowserMenuScaleTableViewCell : UITableViewCell
-
 @property (nonatomic, strong, nullable) BrowserMenuScaleTableViewCellScaleChangedBlock scaleChangedBlock;
-
 - (void)setScale:(double)newScale;
-
 @end

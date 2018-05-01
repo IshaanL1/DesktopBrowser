@@ -67,8 +67,8 @@
     } else if (sec == BrowserMenuSectionScaleJS && row == BrowserMenuSectionScaleJSRowScale) {
         BrowserMenuScaleTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:[BrowserMenuScaleTableViewCell reuseIdentifier] forIndexPath:indexPath];
         [cell setScale:[[self configuration] scale]];
-        [cell setScaleChangedBlock:^(BrowserMenuActionScaleChange* _Nonnull action) {
-            [[welf delegate] userDidChangeWebViewScale:action];
+        [cell setScaleChangedBlock:^(double newScale) {
+            [[welf delegate] userDidChangeWebViewScale:newScale];
         }];
         return cell;
     } else if (sec == BrowserMenuSectionScaleJS && row == BrowserMenuSectionScaleJSRowJavascript) {

@@ -8,11 +8,7 @@
 
 #import "BrowserMenuViewController.h"
 #import "NSException+DBR.h"
-#import "BrowserMenuURLTableViewCell.h"
 #import "UITableViewCell+DBR.h"
-#import "BrowserMenuScaleTableViewCell.h"
-#import "BrowserMenuJavascriptTableViewCell.h"
-#import "ButtonTableViewCell.h"
 #import "BrowserMenuTableViewController.h"
 
 @interface BrowserMenuViewController () <UIPopoverPresentationControllerDelegate, BrowserMenuTableViewControllerDelegate>
@@ -91,10 +87,11 @@
     [[self configurationChangeDelegate] changeDidOccurToConfiguration:config];
     block(self, action);
 }
-- (void)userDidChangeWebViewScale:(BrowserMenuActionScaleChange*)action;
+- (void)userDidChangeWebViewScale:(double)newScale;
 {
     BrowserMenuViewControllerCompletionHandler block = [self completion];
     if (!block) { return; }
+    BrowserMenuActionScaleChange* action = [[BrowserMenuActionScaleChange alloc] initWithScale:newScale];
     BrowserTabConfiguration* config = [self configuration];
     [config setScale:[action scale]];
     [[self configurationChangeDelegate] changeDidOccurToConfiguration:config];

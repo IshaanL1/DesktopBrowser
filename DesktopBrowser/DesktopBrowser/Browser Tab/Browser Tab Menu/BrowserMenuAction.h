@@ -8,6 +8,7 @@
 
 @import Foundation;
 
+
 /// Abstract Superclass that represents an action taken by the BrowserMenuViewController
 @interface BrowserMenuAction : NSObject
 @end
@@ -32,3 +33,4 @@
 
 @interface BrowserMenuActionHideTab: BrowserMenuAction
 @end
+

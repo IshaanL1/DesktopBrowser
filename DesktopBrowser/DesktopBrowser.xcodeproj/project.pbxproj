@@ -20,12 +20,12 @@
 		5048166F2095F65C00AE966F /* WebViewToolbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5048166E2095F65C00AE966F /* WebViewToolbarController.m */; };
 		504816722096BD9D00AE966F /* UIBarButtonItem+DBR.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816712096BD9D00AE966F /* UIBarButtonItem+DBR.m */; };
 		504816752096C3A200AE966F /* BrowserMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816742096C3A200AE966F /* BrowserMenuViewController.m */; };
-		504816782096DB5000AE966F /* BrowserMenuAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816772096DB5000AE966F /* BrowserMenuAction.m */; };
 		5048167C2096DE1900AE966F /* BrowserMenuURLTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5048167A2096DE1900AE966F /* BrowserMenuURLTableViewCell.m */; };
 		5048167D2096DE1900AE966F /* BrowserMenuURLTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5048167B2096DE1900AE966F /* BrowserMenuURLTableViewCell.xib */; };
 		504816822097233A00AE966F /* BrowserMenuScaleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816802097233A00AE966F /* BrowserMenuScaleTableViewCell.m */; };
 		504816832097233A00AE966F /* BrowserMenuScaleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 504816812097233A00AE966F /* BrowserMenuScaleTableViewCell.xib */; };
 		504816862097251500AE966F /* UITableViewCell+DBR.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816852097251500AE966F /* UITableViewCell+DBR.m */; };
+		50794FAE2098A4A4000ABCC0 /* BrowserMenuAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816772096DB5000AE966F /* BrowserMenuAction.m */; };
 		50CCF0CD2097FEE200ABF37F /* ButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCF0CB2097FEE200ABF37F /* ButtonTableViewCell.m */; };
 		50CCF0CE2097FEE200ABF37F /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50CCF0CC2097FEE200ABF37F /* ButtonTableViewCell.xib */; };
 		50CCF0D12098078100ABF37F /* TabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCF0D02098078100ABF37F /* TabListViewController.m */; };
@@ -277,7 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5048166C2095F11F00AE966F /* WebViewScaleController.m in Sources */,
-				504816782096DB5000AE966F /* BrowserMenuAction.m in Sources */,
+				50794FAE2098A4A4000ABCC0 /* BrowserMenuAction.m in Sources */,
 				50CCF0D4209807A900ABF37F /* TabListTableViewController.m in Sources */,
 				50CCF0D720980C6200ABF37F /* BrowserTabConfiguration.m in Sources */,
 				504816862097251500AE966F /* UITableViewCell+DBR.m in Sources */,

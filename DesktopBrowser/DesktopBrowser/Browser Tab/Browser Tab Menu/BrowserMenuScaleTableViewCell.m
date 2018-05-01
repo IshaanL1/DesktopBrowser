@@ -46,13 +46,14 @@ static NSString* BrowserMenuScaleStringFromDouble(double number)
     // adjust it
     value += 0.1;
     // try to create an action
-    BrowserMenuActionScaleChange* action = [[BrowserMenuActionScaleChange alloc] initWithScale:value];
+    // FIXME: Verify the value is valid
     // if the action is NIL, the value is out of range and we should bail
-    if (!action) { return; }
     // update the UI
-    [self updateUIWithAction:action];
+    [self setScale:value];
     // check if our block has been set, if it has call it with the action
-    [self callCompletionBlockWithAction:action];
+    BrowserMenuScaleTableViewCellScaleChangedBlock block = [self scaleChangedBlock];
+    if (!block) { return; }
+    block(value);
 }
 
 - (IBAction)minusButtonTapped:(id)sender;
@@ -62,26 +63,16 @@ static NSString* BrowserMenuScaleStringFromDouble(double number)
     // adjust it
     value -= 0.1;
     // try to create an action
-    BrowserMenuActionScaleChange* action = [[BrowserMenuActionScaleChange alloc] initWithScale:value];
-    // if the action is NIL, the value is out of range and we should bail
-    if (!action) { return; }
-    // update the UI
-    [self updateUIWithAction:action];
+    [self setScale:value];
     // check if our block has been set, if it has call it with the action
-    [self callCompletionBlockWithAction:action];
-}
-
-- (void)updateUIWithAction:(BrowserMenuActionScaleChange* __nonnull)action;
-{
-    [self setInternalScaleRepresentation:BrowserMenuScaleStringFromDouble([action scale])];
-    [self updateLabel];
-}
-
-- (void)callCompletionBlockWithAction:(BrowserMenuActionScaleChange* __nonnull)action;
-{
     BrowserMenuScaleTableViewCellScaleChangedBlock block = [self scaleChangedBlock];
     if (!block) { return; }
-    block(action);
+    block(value);}
+
+- (void)updateUIWithAction:(double)newScale;
+{
+    [self setInternalScaleRepresentation:BrowserMenuScaleStringFromDouble(newScale)];
+    [self updateLabel];
 }
 
 - (void)setScale:(double)newScale;

@@ -12,7 +12,7 @@
 
 typedef void (^BrowserTabViewControllerCompletionHandler)(UIViewController* __nonnull vc,
                                                            BrowserTabConfiguration* __nonnull config,
-                                                           BrowserMenuAction* __nullable action);
+                                                           BOOL shouldDelete);
 
 @interface BrowserTabViewController : UIViewController
 
