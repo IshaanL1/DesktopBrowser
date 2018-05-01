@@ -33,6 +33,7 @@
 		50CCF0D720980C6200ABF37F /* BrowserTabConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCF0D620980C6200ABF37F /* BrowserTabConfiguration.m */; };
 		50CCF0DB2098109700ABF37F /* TabListTabTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCF0D92098109700ABF37F /* TabListTabTableViewCell.m */; };
 		50CCF0DC2098109700ABF37F /* TabListTabTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50CCF0DA2098109700ABF37F /* TabListTabTableViewCell.xib */; };
+		50DECA1820987DE100744B00 /* BrowserMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DECA1720987DE100744B00 /* BrowserMenuTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +84,8 @@
 		50CCF0D82098109700ABF37F /* TabListTabTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabListTabTableViewCell.h; sourceTree = "<group>"; };
 		50CCF0D92098109700ABF37F /* TabListTabTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabListTabTableViewCell.m; sourceTree = "<group>"; };
 		50CCF0DA2098109700ABF37F /* TabListTabTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabListTabTableViewCell.xib; sourceTree = "<group>"; };
+		50DECA1620987DE100744B00 /* BrowserMenuTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowserMenuTableViewController.h; sourceTree = "<group>"; };
+		50DECA1720987DE100744B00 /* BrowserMenuTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowserMenuTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +166,8 @@
 			children = (
 				504816732096C3A200AE966F /* BrowserMenuViewController.h */,
 				504816742096C3A200AE966F /* BrowserMenuViewController.m */,
+				50DECA1620987DE100744B00 /* BrowserMenuTableViewController.h */,
+				50DECA1720987DE100744B00 /* BrowserMenuTableViewController.m */,
 				5048167E20971F8D00AE966F /* BrowserMenuSectionsAndRows.h */,
 				504816792096DE1900AE966F /* BrowserMenuURLTableViewCell.h */,
 				5048167A2096DE1900AE966F /* BrowserMenuURLTableViewCell.m */,
@@ -289,6 +294,7 @@
 				5048164D2095DC3C00AE966F /* AppDelegate.m in Sources */,
 				504816822097233A00AE966F /* BrowserMenuScaleTableViewCell.m in Sources */,
 				504816632095DDC100AE966F /* BrowserTabViewController.m in Sources */,
+				50DECA1820987DE100744B00 /* BrowserMenuTableViewController.m in Sources */,
 				50CCF0CD2097FEE200ABF37F /* ButtonTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

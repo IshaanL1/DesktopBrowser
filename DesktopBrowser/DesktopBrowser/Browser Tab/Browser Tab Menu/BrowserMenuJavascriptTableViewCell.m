@@ -16,17 +16,16 @@
 
 @implementation BrowserMenuJavascriptTableViewCell
 
-- (void)setJavascriptAction:(BrowserMenuActionBoolChange* __nonnull)action;
+- (void)setToggleEnabled:(BOOL)enabled
 {
-    [[self switchControl] setOn:[action boolValue]];
+    [[self switchControl] setOn:enabled];
 }
 
 - (IBAction)switchControlToggled:(id)sender;
 {
     BrowserMenuJavascriptTableViewCellValueChangedBlock block = [self valueChangedBlock];
     if (!block) { return; }
-    BrowserMenuActionBoolChange* action = [[BrowserMenuActionBoolChange alloc] initWithBool:[[self switchControl] isOn]];
-    block(action);
+    block([[self switchControl] isOn]);
 }
 
 @end

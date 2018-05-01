@@ -9,11 +9,11 @@
 @import UIKit;
 #import "BrowserMenuAction.h"
 
-typedef void (^BrowserMenuJavascriptTableViewCellValueChangedBlock)(BrowserMenuActionBoolChange* __nonnull action);
+typedef void (^BrowserMenuJavascriptTableViewCellValueChangedBlock)(BOOL newValue);
 
 @interface BrowserMenuJavascriptTableViewCell : UITableViewCell
 
 @property (nonatomic, strong, nullable) BrowserMenuJavascriptTableViewCellValueChangedBlock valueChangedBlock;
-- (void)setJavascriptAction:(BrowserMenuActionBoolChange* __nonnull)action;
+- (void)setToggleEnabled:(BOOL)enabled;
 
 @end

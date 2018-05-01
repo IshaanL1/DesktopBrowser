@@ -7,15 +7,14 @@
 //
 
 @import UIKit;
-@import WebKit;
 #import "BrowserMenuAction.h"
+#import "BrowserTabConfiguration.h"
 
 typedef void (^BrowserMenuViewControllerCompletionHandler)(UIViewController* __nonnull vc, BrowserMenuAction* __nullable action);
 
 @interface BrowserMenuViewController : UITableViewController
 
-+ (UIViewController*)browserMenuForWebView:(WKWebView* __nonnull)webView
-                       currentWebViewScale:(double)scale
++ (UIViewController*)browserMenuWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
                    presentingBarButtonItem:(UIBarButtonItem* __nonnull)bbi
                      withCompletionHandler:(BrowserMenuViewControllerCompletionHandler)completion;
 

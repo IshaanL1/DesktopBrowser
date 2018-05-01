@@ -8,7 +8,7 @@
 
 @import UIKit;
 
-typedef void (^ButtonTableViewCellActionBlock)(BOOL newValue);
+typedef void (^ButtonTableViewCellActionBlock)(BOOL isDestructive);
 
 @interface ButtonTableViewCell : UITableViewCell
 

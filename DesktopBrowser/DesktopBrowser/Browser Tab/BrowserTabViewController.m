@@ -127,10 +127,9 @@
             }];
         }
     };
-    UIViewController* menuVC = [BrowserMenuViewController browserMenuForWebView:[self webView]
-                                                            currentWebViewScale:[[self scaleController] browserScale]
-                                                        presentingBarButtonItem:sender
-                                                          withCompletionHandler:action];
+    UIViewController* menuVC = [BrowserMenuViewController browserMenuWithConfiguration:[self configuration]
+                                                               presentingBarButtonItem:sender
+                                                                 withCompletionHandler:action];
     [self presentViewController:menuVC animated:YES completion:nil];
 }
 
