@@ -14,4 +14,19 @@
 
 @implementation TabListTableViewController
 
+- (void)viewDidLoad;
+{
+    [super viewDidLoad];
+}
+
+- (void)dataChanged;
+{
+    [[self tableView] reloadData];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+{
+    return [[self sharedMutableDataSource] count];
+}
+
 @end

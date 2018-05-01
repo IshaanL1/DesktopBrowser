@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "BrowserTabViewController.h"
+#import "TabListViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,7 +23,7 @@
         [self setWindow:[[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds]];
     }
 
-    UIViewController* vc = [BrowserTabViewController browserTabWithCompletionHandler:nil];
+    UIViewController* vc = [TabListViewController tabList];
 
     [[self window] setRootViewController:vc];
     [[self window] setBackgroundColor:[UIColor whiteColor]];

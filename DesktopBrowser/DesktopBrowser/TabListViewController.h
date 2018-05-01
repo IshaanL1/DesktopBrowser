@@ -10,4 +10,6 @@
 
 @interface TabListViewController : UIViewController
 
++ (UIViewController*)tabList;
+
 @end

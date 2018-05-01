@@ -7,7 +7,11 @@
 //
 
 @import UIKit;
+#import "BrowserTabConfiguration.h"
 
 @interface TabListTableViewController : UITableViewController
+
+@property (nonatomic, weak, nullable) NSMutableArray<BrowserTabConfiguration*>* sharedMutableDataSource;
+- (void)dataChanged;
 
 @end

@@ -21,5 +21,6 @@
 + (instancetype)newMenuButtonItemWithTarget:(id<UIBarButtonItemBackAndForwardable> __nonnull)target;
 + (instancetype)newDisabledBackButtonItemWithTarget:(id<UIBarButtonItemBackAndForwardable> __nonnull)target;
 + (instancetype)newDisabledForwardButtonItemWithTarget:(id<UIBarButtonItemBackAndForwardable> __nonnull)target;
++ (instancetype)newAddButtonItemWithTarget:(id __nonnull)target action:(SEL __nonnull)action;
 
 @end

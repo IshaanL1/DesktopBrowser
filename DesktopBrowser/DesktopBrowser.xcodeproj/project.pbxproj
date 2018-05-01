@@ -30,6 +30,7 @@
 		50CCF0CE2097FEE200ABF37F /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50CCF0CC2097FEE200ABF37F /* ButtonTableViewCell.xib */; };
 		50CCF0D12098078100ABF37F /* TabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCF0D02098078100ABF37F /* TabListViewController.m */; };
 		50CCF0D4209807A900ABF37F /* TabListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCF0D3209807A900ABF37F /* TabListTableViewController.m */; };
+		50CCF0D720980C6200ABF37F /* BrowserTabConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCF0D620980C6200ABF37F /* BrowserTabConfiguration.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,8 @@
 		50CCF0D02098078100ABF37F /* TabListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabListViewController.m; sourceTree = "<group>"; };
 		50CCF0D2209807A900ABF37F /* TabListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabListTableViewController.h; sourceTree = "<group>"; };
 		50CCF0D3209807A900ABF37F /* TabListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabListTableViewController.m; sourceTree = "<group>"; };
+		50CCF0D520980C6200ABF37F /* BrowserTabConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowserTabConfiguration.h; sourceTree = "<group>"; };
+		50CCF0D620980C6200ABF37F /* BrowserTabConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowserTabConfiguration.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +132,8 @@
 				50336F7720973B45009BDE5C /* BrowserMenuJavascriptTableViewCell.xib */,
 				504816762096DB5000AE966F /* BrowserMenuAction.h */,
 				504816772096DB5000AE966F /* BrowserMenuAction.m */,
+				50CCF0D520980C6200ABF37F /* BrowserTabConfiguration.h */,
+				50CCF0D620980C6200ABF37F /* BrowserTabConfiguration.m */,
 				5048166D2095F65C00AE966F /* WebViewToolbarController.h */,
 				5048166E2095F65C00AE966F /* WebViewToolbarController.m */,
 				5048166A2095F11F00AE966F /* WebViewScaleController.h */,
@@ -228,6 +233,7 @@
 				5048166C2095F11F00AE966F /* WebViewScaleController.m in Sources */,
 				504816782096DB5000AE966F /* BrowserMenuAction.m in Sources */,
 				50CCF0D4209807A900ABF37F /* TabListTableViewController.m in Sources */,
+				50CCF0D720980C6200ABF37F /* BrowserTabConfiguration.m in Sources */,
 				504816862097251500AE966F /* UITableViewCell+DBR.m in Sources */,
 				504816722096BD9D00AE966F /* UIBarButtonItem+DBR.m in Sources */,
 				50CCF0D12098078100ABF37F /* TabListViewController.m in Sources */,

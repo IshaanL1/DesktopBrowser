@@ -30,4 +30,9 @@
     return item;
 }
 
++ (instancetype)newAddButtonItemWithTarget:(id __nonnull)target action:(SEL __nonnull)action;
+{
+    return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:target action:action];
+}
+
 @end
