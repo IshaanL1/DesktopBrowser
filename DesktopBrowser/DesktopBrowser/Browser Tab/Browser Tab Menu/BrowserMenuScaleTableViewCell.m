@@ -19,6 +19,8 @@ static NSString* BrowserMenuScaleStringFromDouble(double number)
 
 @property (weak, nonatomic) IBOutlet UILabel *scaleLabel;
 @property (nonatomic, strong) NSString* internalScaleRepresentation;
+@property (weak, nonatomic) IBOutlet UIButton *plusButton;
+@property (weak, nonatomic) IBOutlet UIButton *minusButton;
 
 @end
 
@@ -41,13 +43,19 @@ static NSString* BrowserMenuScaleStringFromDouble(double number)
 
 - (IBAction)plusButtonTapped:(id)sender;
 {
+    // enable both buttons in case one was disabled before
+    [[self plusButton] setEnabled:YES];
+    [[self minusButton] setEnabled:YES];
     // get the current value
     double value = [[self internalScaleRepresentation] doubleValue];
     // adjust it
     value += 0.1;
-    // try to create an action
-    // FIXME: Verify the value is valid
-    // if the action is NIL, the value is out of range and we should bail
+    // verify the number is allowed
+    DoubleInDoubleOutBlock verifyScale = [self verifyScale];
+    if (verifyScale && !verifyScale(value)) {
+        [[self plusButton] setEnabled:NO];
+        return;
+    }
     // update the UI
     [self setScale:value];
     // check if our block has been set, if it has call it with the action
@@ -58,21 +66,25 @@ static NSString* BrowserMenuScaleStringFromDouble(double number)
 
 - (IBAction)minusButtonTapped:(id)sender;
 {
+    // enable both buttons in case one was disabled before
+    [[self plusButton] setEnabled:YES];
+    [[self minusButton] setEnabled:YES];
     // get the current value
     double value = [[self internalScaleRepresentation] doubleValue];
     // adjust it
     value -= 0.1;
-    // try to create an action
+    // verify the number is allowed
+    DoubleInDoubleOutBlock verifyScale = [self verifyScale];
+    if (verifyScale && !verifyScale(value)) {
+        [[self minusButton] setEnabled:NO];
+        return;
+    }
+    // update the UI
     [self setScale:value];
     // check if our block has been set, if it has call it with the action
     BrowserMenuScaleTableViewCellScaleChangedBlock block = [self scaleChangedBlock];
     if (!block) { return; }
-    block(value);}
-
-- (void)updateUIWithAction:(double)newScale;
-{
-    [self setInternalScaleRepresentation:BrowserMenuScaleStringFromDouble(newScale)];
-    [self updateLabel];
+    block(value);
 }
 
 - (void)setScale:(double)newScale;

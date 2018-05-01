@@ -13,5 +13,7 @@ typedef void (^BrowserMenuScaleTableViewCellScaleChangedBlock)(double scale);
 
 @interface BrowserMenuScaleTableViewCell : UITableViewCell
 @property (nonatomic, strong, nullable) BrowserMenuScaleTableViewCellScaleChangedBlock scaleChangedBlock;
+@property (nonatomic, strong, nullable) DoubleInDoubleOutBlock verifyScale;
 - (void)setScale:(double)newScale;
+
 @end

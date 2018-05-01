@@ -23,15 +23,23 @@
 @end
 
 @implementation BrowserMenuActionScaleChange
+
++ (DoubleInDoubleOutBlock)verifyScale;
+{
+    return ^BOOL(double input) {
+        if (input < 1 || input > 4) {
+            return NO;
+        }
+        return YES;
+    };
+}
 /// this method is smart enough to know whether the passed in value is valid
 /// initializer returns NIL if the value is invalid
 - (instancetype)initWithScale:(double)scale;
 {
     self = [super init];
     [NSException throwIfNilObject:self];
-    if (scale < 1 || scale > 4) {
-        return nil;
-    }
+    if (![BrowserMenuActionScaleChange verifyScale](scale)) { return nil; }
     _scale = scale;
     return self;
 }

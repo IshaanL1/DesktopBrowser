@@ -18,7 +18,10 @@
 - (instancetype)initWithURLString:(NSString*)url;
 @end
 
+typedef BOOL(^DoubleInDoubleOutBlock)(double scale);
+
 @interface BrowserMenuActionScaleChange: BrowserMenuAction
+@property (class, nonatomic, strong, readonly) DoubleInDoubleOutBlock verifyScale;
 @property (nonatomic, readonly) double scale;
 - (instancetype)initWithScale:(double)scale;
 @end

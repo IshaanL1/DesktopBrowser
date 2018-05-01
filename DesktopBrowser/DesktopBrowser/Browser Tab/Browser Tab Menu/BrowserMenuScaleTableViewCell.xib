@@ -59,6 +59,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
+                <outlet property="minusButton" destination="xU2-ua-Wx0" id="q59-pc-lze"/>
+                <outlet property="plusButton" destination="NnJ-en-box" id="mtb-HL-cnp"/>
                 <outlet property="scaleLabel" destination="fXl-xK-hPV" id="gkR-Jq-sbt"/>
             </connections>
             <point key="canvasLocation" x="34" y="66"/>
