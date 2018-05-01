@@ -28,6 +28,8 @@
 		504816862097251500AE966F /* UITableViewCell+DBR.m in Sources */ = {isa = PBXBuildFile; fileRef = 504816852097251500AE966F /* UITableViewCell+DBR.m */; };
 		50CCF0CD2097FEE200ABF37F /* ButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCF0CB2097FEE200ABF37F /* ButtonTableViewCell.m */; };
 		50CCF0CE2097FEE200ABF37F /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50CCF0CC2097FEE200ABF37F /* ButtonTableViewCell.xib */; };
+		50CCF0D12098078100ABF37F /* TabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCF0D02098078100ABF37F /* TabListViewController.m */; };
+		50CCF0D4209807A900ABF37F /* TabListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCF0D3209807A900ABF37F /* TabListTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +71,10 @@
 		50CCF0CA2097FEE200ABF37F /* ButtonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonTableViewCell.h; sourceTree = "<group>"; };
 		50CCF0CB2097FEE200ABF37F /* ButtonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonTableViewCell.m; sourceTree = "<group>"; };
 		50CCF0CC2097FEE200ABF37F /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonTableViewCell.xib; sourceTree = "<group>"; };
+		50CCF0CF2098078100ABF37F /* TabListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabListViewController.h; sourceTree = "<group>"; };
+		50CCF0D02098078100ABF37F /* TabListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabListViewController.m; sourceTree = "<group>"; };
+		50CCF0D2209807A900ABF37F /* TabListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabListTableViewController.h; sourceTree = "<group>"; };
+		50CCF0D3209807A900ABF37F /* TabListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabListTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,10 @@
 			children = (
 				5048164B2095DC3C00AE966F /* AppDelegate.h */,
 				5048164C2095DC3C00AE966F /* AppDelegate.m */,
+				50CCF0CF2098078100ABF37F /* TabListViewController.h */,
+				50CCF0D02098078100ABF37F /* TabListViewController.m */,
+				50CCF0D2209807A900ABF37F /* TabListTableViewController.h */,
+				50CCF0D3209807A900ABF37F /* TabListTableViewController.m */,
 				504816612095DDC100AE966F /* BrowserTabViewController.h */,
 				504816622095DDC100AE966F /* BrowserTabViewController.m */,
 				504816732096C3A200AE966F /* BrowserMenuViewController.h */,
@@ -217,8 +227,10 @@
 			files = (
 				5048166C2095F11F00AE966F /* WebViewScaleController.m in Sources */,
 				504816782096DB5000AE966F /* BrowserMenuAction.m in Sources */,
+				50CCF0D4209807A900ABF37F /* TabListTableViewController.m in Sources */,
 				504816862097251500AE966F /* UITableViewCell+DBR.m in Sources */,
 				504816722096BD9D00AE966F /* UIBarButtonItem+DBR.m in Sources */,
+				50CCF0D12098078100ABF37F /* TabListViewController.m in Sources */,
 				504816662095E00200AE966F /* WKWebView+DBR.m in Sources */,
 				5048165B2095DC3D00AE966F /* main.m in Sources */,
 				50336F7820973B45009BDE5C /* BrowserMenuJavascriptTableViewCell.m in Sources */,
