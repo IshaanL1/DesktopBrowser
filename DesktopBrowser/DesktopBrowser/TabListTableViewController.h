@@ -14,7 +14,7 @@
 
 - (void)userSelectedTabConfiguration:(BrowserTabConfiguration* __nonnull)configuration;
 - (void)userDeletedTabConfigurationAtIndexPath:(NSIndexPath* __nonnull)indexPath
-                         withCompletionHandler:(void (^_Nonnull)(BOOL)) completion;
+                         withCompletionHandler:(void (^_Nullable)(BOOL)) completion;
 
 @end
 

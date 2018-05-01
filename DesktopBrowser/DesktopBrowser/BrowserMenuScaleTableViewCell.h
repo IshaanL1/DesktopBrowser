@@ -13,6 +13,6 @@
 
 @property (nonatomic, strong, nullable) void (^scaleChangedBlock)(BrowserMenuActionScaleChange* __nonnull);
 
-- (void)setScale:(BrowserMenuActionScaleChange* __nonnull)newScale;
+- (void)setScale:(double)newScale;
 
 @end

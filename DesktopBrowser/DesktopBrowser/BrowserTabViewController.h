@@ -8,9 +8,13 @@
 
 @import UIKit;
 #import "BrowserMenuAction.h"
+#import "BrowserTabConfiguration.h"
 
 @interface BrowserTabViewController : UIViewController
 
-+ (UIViewController*)browserTabWithCompletionHandler:(void (^__nullable)(UIViewController* __nonnull, BrowserMenuAction* __nonnull))completion;
++ (UIViewController*)browserTabWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
+                               completionHandler:(void (^__nullable)(UIViewController* __nonnull,
+                                                                     BrowserTabConfiguration* __nonnull,
+                                                                     BrowserMenuAction* __nullable))completionHandler;
 
 @end

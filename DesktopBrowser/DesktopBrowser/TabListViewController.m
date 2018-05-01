@@ -11,6 +11,7 @@
 #import "NSException+DBR.h"
 #import "BrowserTabConfiguration.h"
 #import "UIBarButtonItem+DBR.h"
+#import "BrowserTabViewController.h"
 
 @interface TabListViewController () <TabListTableViewControllerDelegate>
 
@@ -74,14 +75,29 @@
 
 - (void)userSelectedTabConfiguration:(BrowserTabConfiguration* __nonnull)configuration;
 {
-
+    __weak TabListViewController* welf = self;
+    UIViewController* tabVC = [BrowserTabViewController browserTabWithConfiguration:configuration
+                                                                  completionHandler:^(UIViewController * _Nonnull vc, BrowserTabConfiguration * _Nonnull configuration, BrowserMenuAction * _Nullable action)
+    {
+        if (!action || [action isKindOfClass:[BrowserMenuActionHideTab class]]) {
+            [vc dismissViewControllerAnimated:YES completion:nil];
+        } else if ([action isKindOfClass:[BrowserMenuActionCloseTab class]]) {
+            [vc dismissViewControllerAnimated:YES completion:^{
+                NSInteger idx = [[self tabs] indexOfObject:configuration];
+                NSIndexPath* indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
+                [welf userDeletedTabConfigurationAtIndexPath:indexPath withCompletionHandler:nil];
+            }];
+        }
+    }];
+    [self presentViewController:tabVC animated:YES completion:nil];
 }
 
 - (void)userDeletedTabConfigurationAtIndexPath:(NSIndexPath* __nonnull)indexPath
-                         withCompletionHandler:(void (^_Nonnull)(BOOL)) completion;
+                         withCompletionHandler:(void (^_Nullable)(BOOL))completion;
 {
     [[self tabs] removeObjectAtIndex:indexPath.row];
     [[self tableViewController] removedItemAtIndex:indexPath.row];
+    if (!completion) { return; }
     completion(YES);
 }
 

@@ -13,7 +13,7 @@
 @interface BrowserMenuViewController : UITableViewController
 
 + (UIViewController*)browserMenuForWebView:(WKWebView* __nonnull)webView
-                       currentWebViewScale:(BrowserMenuActionScaleChange* __nonnull)scale
+                       currentWebViewScale:(double)scale
                    presentingBarButtonItem:(UIBarButtonItem* __nonnull)bbi
                      withCompletionHandler:(void (^__nullable)(UIViewController* __nonnull, BrowserMenuAction* __nullable))completion;
 

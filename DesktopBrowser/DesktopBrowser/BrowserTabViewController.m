@@ -16,13 +16,14 @@
 
 @interface BrowserTabViewController () <UIBarButtonItemBackAndForwardable>
 
-@property (nonatomic, strong, nullable) void (^completion)(UIViewController* __nonnull, BrowserMenuAction* __nonnull);
+@property (nonatomic, strong, nonnull) BrowserTabConfiguration* configuration;
 @property (nonatomic, strong, nonnull) WKWebView* webView;
 @property (nonatomic, strong, nonnull) WebViewScaleController* scaleController;
 @property (nonatomic, strong, nonnull) WebViewToolbarController* toolbarController;
 @property (nonatomic, strong, nonnull) UIBarButtonItem* backButton;
 @property (nonatomic, strong, nonnull) UIBarButtonItem* forwardButton;
 @property (nonatomic, strong, nonnull) UIBarButtonItem* menuButton;
+@property (nonatomic, strong, nullable) void (^completion)(UIViewController* __nonnull, BrowserTabConfiguration* __nonnull, BrowserMenuAction* __nullable);
 
 @end
 
@@ -30,19 +31,26 @@
 
 // MARK: INIT
 
-+ (UIViewController*)browserTabWithCompletionHandler:(void (^__nullable)(UIViewController* __nonnull, BrowserMenuAction* __nonnull))completion;
++ (UIViewController*)browserTabWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
+                               completionHandler:(void (^__nullable)(UIViewController* __nonnull,
+                                                                     BrowserTabConfiguration* __nonnull,
+                                                                     BrowserMenuAction* __nullable))completionHandler;
 {
-    BrowserTabViewController* browserVC = [[BrowserTabViewController alloc] initWithCompletionHandler:completion];
+    BrowserTabViewController* browserVC = [[BrowserTabViewController alloc] initWithConfiguration:configuration completionHandler:completionHandler];
     UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:browserVC];
     return navigationVC;
 }
 
-- (instancetype)initWithCompletionHandler:(void (^__nullable)(UIViewController* __nonnull, BrowserMenuAction* __nonnull))completion;
+- (instancetype)initWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
+                               completionHandler:(void (^__nullable)(UIViewController* __nonnull,
+                                                                     BrowserTabConfiguration* __nonnull,
+                                                                     BrowserMenuAction* __nullable))completionHandler;
 {
     self = [super init];
     [NSException throwIfNilObject:self];
     WKWebView* webView = [[WKWebView alloc] init_DBR];
-    _completion = completion;
+    _configuration = configuration;
+    _completion = completionHandler;
     _scaleController = [[WebViewScaleController alloc] initWithManagedWebView: webView];
     _toolbarController = [[WebViewToolbarController alloc] initWithManagedWebView:webView];
     _webView = webView;
@@ -72,6 +80,13 @@
                                   [[[self view] centerYAnchor] constraintEqualToAnchor:[[self webView] centerYAnchor]],
                                   ]];
     [[self scaleController] viewDidLoad];
+
+    // configure the webview with the configuration
+    BrowserTabConfiguration* config = [self configuration];
+    [NSException throwIfNilObject:config];
+    [[self scaleController] setBrowserScale:[config scale]];
+    [[[[self webView] configuration] preferences] setJavaScriptEnabled:[config javascriptEnabled]];
+    [self loadURLString:[config currentURLString]];
 }
 
 // MARK: UIBarButtonItemBackAndForwardable
@@ -101,7 +116,7 @@
         } else if ([_action isKindOfClass:[BrowserMenuActionScaleChange class]]) {
             // if its a scale change action we need to change the scale, but not dismiss the vc
             BrowserMenuActionScaleChange* action = (BrowserMenuActionScaleChange*)_action;
-            [[self scaleController] setBrowserScale:action];
+            [[self scaleController] setBrowserScale:[action scale]];
         } else if ([_action isKindOfClass:[BrowserMenuActionBoolChange class]]) {
             // if JS changes, update the webview and refresh the page
             BrowserMenuActionBoolChange* action = (BrowserMenuActionBoolChange*)_action;
@@ -109,9 +124,11 @@
             [[self webView] reload];
         } else if ([_action isKindOfClass:[BrowserMenuActionCloseTab class]] || [_action isKindOfClass:[BrowserMenuActionHideTab class]]) {
             // pass on hide and close actions to our completion handler
-            void (^block)(UIViewController* __nonnull, BrowserMenuAction* __nonnull) = [self completion];
+            void (^block)(UIViewController* __nonnull, BrowserTabConfiguration* __nonnull, BrowserMenuAction* __nullable) = [self completion];
             if (!block) { return; }
-            block(welf, _action);
+            [vc dismissViewControllerAnimated:YES completion:^{
+                block(welf, [self configuration], _action);
+            }];
         }
     };
     UIViewController* menuVC = [BrowserMenuViewController browserMenuForWebView:[self webView]

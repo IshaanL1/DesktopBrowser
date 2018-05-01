@@ -12,7 +12,7 @@
 @interface WebViewScaleController : NSObject
 
 @property (nonatomic, weak, readonly) WKWebView* webView;
-@property (nonatomic, strong) BrowserMenuActionScaleChange* __nonnull browserScale;
+@property (nonatomic) double browserScale;
 
 - (instancetype)initWithManagedWebView:(WKWebView*)webView;
 - (void)updateWebViewContentInsetsForCurrentScaleWithSafeAreaInsets:(UIEdgeInsets) safeAreaInsets;

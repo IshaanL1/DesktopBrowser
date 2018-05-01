@@ -19,7 +19,7 @@
 
 @property (nonatomic, weak, nullable) WKWebView* webView;
 @property (nonatomic, strong, nullable) void (^completion)(UIViewController* __nonnull, BrowserMenuAction* __nonnull);
-@property (nonatomic, strong, nonnull) BrowserMenuActionScaleChange* currentWebViewScale;
+@property (nonatomic) double currentWebViewScale;
 
 @end
 
@@ -28,7 +28,7 @@
 // MARK: INIT
 
 + (UIViewController*)browserMenuForWebView:(WKWebView* __nonnull)webView
-                       currentWebViewScale:(BrowserMenuActionScaleChange* __nonnull)scale
+                       currentWebViewScale:(double)scale
                    presentingBarButtonItem:(UIBarButtonItem* __nonnull)bbi
                      withCompletionHandler:(void (^__nullable)(UIViewController* __nonnull, BrowserMenuAction* __nullable))completion;
 {
@@ -44,7 +44,7 @@
 }
 
 - (instancetype)initWithWebView:(WKWebView*)webView
-            currentWebViewScale:(BrowserMenuActionScaleChange* __nonnull)scale
+            currentWebViewScale:(double)scale
           withCompletionHandler:(void (^__nullable)(UIViewController* __nonnull, BrowserMenuAction* __nonnull))completion;
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
@@ -138,7 +138,7 @@
         [cell setScaleChangedBlock:^(BrowserMenuActionScaleChange* _Nonnull action) {
             void (^block)(UIViewController* __nonnull, BrowserMenuAction* __nullable) = [welf completion];
             if (!block) { return; }
-            [welf setCurrentWebViewScale:action];
+            [welf setCurrentWebViewScale:[action scale]];
             block(welf, action);
         }];
     } else if ([_cell isKindOfClass:[BrowserMenuJavascriptTableViewCell class]]) {

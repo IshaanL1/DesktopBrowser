@@ -24,16 +24,15 @@
     [NSException throwIfNilObject:self];
     _webView = webView;
     _sizeConstraints = @[];
-    _browserScale = [[BrowserMenuActionScaleChange alloc] initWithScale:2];
+    _browserScale = 2;
     _latestSafeAreaInsets = UIEdgeInsetsZero;
     return self;
 }
 
-- (void)setBrowserScale:(BrowserMenuActionScaleChange*)newScale;
+- (void)setBrowserScale:(double)newScale;
 {
     // do the work of the original setter
     _browserScale = newScale;
-    double rawScaleValue = [newScale scale];
 
     // grab my dependencies and make sure they're not NIL
     UIView* parentView = [[self webView] superview];
@@ -48,14 +47,14 @@
                                                                                   relatedBy:NSLayoutRelationEqual
                                                                                      toItem:parentView
                                                                                   attribute:NSLayoutAttributeWidth
-                                                                                 multiplier:rawScaleValue
+                                                                                 multiplier:newScale
                                                                                    constant:0],
                                                      [NSLayoutConstraint constraintWithItem:webView
                                                                                   attribute:NSLayoutAttributeHeight
                                                                                   relatedBy:NSLayoutRelationEqual
                                                                                      toItem:parentView
                                                                                   attribute:NSLayoutAttributeHeight
-                                                                                 multiplier:rawScaleValue
+                                                                                 multiplier:newScale
                                                                                    constant:0]
                                                      ];
 
@@ -66,7 +65,7 @@
     // save them for later
     [self setSizeConstraints:newConstraints];
     // update the transform of the webview
-    [webView setTransform:CGAffineTransformMakeScale(1/rawScaleValue, 1/rawScaleValue)];
+    [webView setTransform:CGAffineTransformMakeScale(1/newScale, 1/newScale)];
     // update the insets
     [self updateWebViewContentInsetsForCurrentScaleWithSafeAreaInsets:[self latestSafeAreaInsets]];
 }
@@ -79,7 +78,7 @@
 - (void)updateWebViewContentInsetsForCurrentScaleWithSafeAreaInsets:(UIEdgeInsets)safeAreaInsets;
 {
     [self setLatestSafeAreaInsets:safeAreaInsets];
-    double currentScale = [[self browserScale] scale];
+    double currentScale = [self browserScale];
     UIEdgeInsets calculatedInsets = UIEdgeInsetsMake(safeAreaInsets.top * currentScale,
                                                      0, // safeAreaInsets.left * currentScale, // prevents horizontal scrolling
                                                      safeAreaInsets.bottom * currentScale,

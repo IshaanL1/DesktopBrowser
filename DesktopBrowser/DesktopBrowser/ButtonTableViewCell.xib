@@ -25,6 +25,9 @@
                         </constraints>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                         <state key="normal" title="Close Tab"/>
+                        <connections>
+                            <action selector="buttonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="VBT-w8-dPk"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

@@ -84,9 +84,9 @@ static NSString* BrowserMenuScaleStringFromDouble(double number)
     block(action);
 }
 
-- (void)setScale:(BrowserMenuActionScaleChange* __nonnull)newScale;
+- (void)setScale:(double)newScale;
 {
-    [self setInternalScaleRepresentation:BrowserMenuScaleStringFromDouble([newScale scale])];
+    [self setInternalScaleRepresentation:BrowserMenuScaleStringFromDouble(newScale)];
     [self updateLabel];
 }
 
