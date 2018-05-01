@@ -117,6 +117,20 @@
 			children = (
 				5048164B2095DC3C00AE966F /* AppDelegate.h */,
 				5048164C2095DC3C00AE966F /* AppDelegate.m */,
+				50CCF0DD2098723100ABF37F /* TabList */,
+				50CCF0DE2098725600ABF37F /* Browser Tab */,
+				50CCF0E0209872BF00ABF37F /* Framework Categories */,
+				504816542095DC3D00AE966F /* Assets.xcassets */,
+				504816562095DC3D00AE966F /* LaunchScreen.storyboard */,
+				504816592095DC3D00AE966F /* Info.plist */,
+				5048165A2095DC3D00AE966F /* main.m */,
+			);
+			path = DesktopBrowser;
+			sourceTree = "<group>";
+		};
+		50CCF0DD2098723100ABF37F /* TabList */ = {
+			isa = PBXGroup;
+			children = (
 				50CCF0CF2098078100ABF37F /* TabListViewController.h */,
 				50CCF0D02098078100ABF37F /* TabListViewController.m */,
 				50CCF0D2209807A900ABF37F /* TabListTableViewController.h */,
@@ -124,8 +138,29 @@
 				50CCF0D82098109700ABF37F /* TabListTabTableViewCell.h */,
 				50CCF0D92098109700ABF37F /* TabListTabTableViewCell.m */,
 				50CCF0DA2098109700ABF37F /* TabListTabTableViewCell.xib */,
+			);
+			path = TabList;
+			sourceTree = "<group>";
+		};
+		50CCF0DE2098725600ABF37F /* Browser Tab */ = {
+			isa = PBXGroup;
+			children = (
 				504816612095DDC100AE966F /* BrowserTabViewController.h */,
 				504816622095DDC100AE966F /* BrowserTabViewController.m */,
+				50CCF0D520980C6200ABF37F /* BrowserTabConfiguration.h */,
+				50CCF0D620980C6200ABF37F /* BrowserTabConfiguration.m */,
+				5048166D2095F65C00AE966F /* WebViewToolbarController.h */,
+				5048166E2095F65C00AE966F /* WebViewToolbarController.m */,
+				5048166A2095F11F00AE966F /* WebViewScaleController.h */,
+				5048166B2095F11F00AE966F /* WebViewScaleController.m */,
+				50CCF0DF2098726400ABF37F /* Browser Tab Menu */,
+			);
+			path = "Browser Tab";
+			sourceTree = "<group>";
+		};
+		50CCF0DF2098726400ABF37F /* Browser Tab Menu */ = {
+			isa = PBXGroup;
+			children = (
 				504816732096C3A200AE966F /* BrowserMenuViewController.h */,
 				504816742096C3A200AE966F /* BrowserMenuViewController.m */,
 				5048167E20971F8D00AE966F /* BrowserMenuSectionsAndRows.h */,
@@ -140,12 +175,16 @@
 				50336F7720973B45009BDE5C /* BrowserMenuJavascriptTableViewCell.xib */,
 				504816762096DB5000AE966F /* BrowserMenuAction.h */,
 				504816772096DB5000AE966F /* BrowserMenuAction.m */,
-				50CCF0D520980C6200ABF37F /* BrowserTabConfiguration.h */,
-				50CCF0D620980C6200ABF37F /* BrowserTabConfiguration.m */,
-				5048166D2095F65C00AE966F /* WebViewToolbarController.h */,
-				5048166E2095F65C00AE966F /* WebViewToolbarController.m */,
-				5048166A2095F11F00AE966F /* WebViewScaleController.h */,
-				5048166B2095F11F00AE966F /* WebViewScaleController.m */,
+				50CCF0CA2097FEE200ABF37F /* ButtonTableViewCell.h */,
+				50CCF0CB2097FEE200ABF37F /* ButtonTableViewCell.m */,
+				50CCF0CC2097FEE200ABF37F /* ButtonTableViewCell.xib */,
+			);
+			path = "Browser Tab Menu";
+			sourceTree = "<group>";
+		};
+		50CCF0E0209872BF00ABF37F /* Framework Categories */ = {
+			isa = PBXGroup;
+			children = (
 				504816702096BD9D00AE966F /* UIBarButtonItem+DBR.h */,
 				504816712096BD9D00AE966F /* UIBarButtonItem+DBR.m */,
 				504816642095DFB600AE966F /* WKWebView+DBR.h */,
@@ -154,15 +193,8 @@
 				504816682095E16C00AE966F /* NSException+DBR.m */,
 				504816842097251500AE966F /* UITableViewCell+DBR.h */,
 				504816852097251500AE966F /* UITableViewCell+DBR.m */,
-				50CCF0CA2097FEE200ABF37F /* ButtonTableViewCell.h */,
-				50CCF0CB2097FEE200ABF37F /* ButtonTableViewCell.m */,
-				50CCF0CC2097FEE200ABF37F /* ButtonTableViewCell.xib */,
-				504816542095DC3D00AE966F /* Assets.xcassets */,
-				504816562095DC3D00AE966F /* LaunchScreen.storyboard */,
-				504816592095DC3D00AE966F /* Info.plist */,
-				5048165A2095DC3D00AE966F /* main.m */,
 			);
-			path = DesktopBrowser;
+			path = "Framework Categories";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
