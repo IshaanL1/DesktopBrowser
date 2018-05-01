@@ -9,7 +9,6 @@
 #import "BrowserMenuViewController.h"
 #import "NSException+DBR.h"
 #import "BrowserMenuURLTableViewCell.h"
-#import "BrowserMenuSectionsAndRows.h"
 #import "UITableViewCell+DBR.h"
 #import "BrowserMenuScaleTableViewCell.h"
 #import "BrowserMenuJavascriptTableViewCell.h"
