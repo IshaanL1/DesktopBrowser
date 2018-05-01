@@ -16,7 +16,7 @@
 
 @interface BrowserTabViewController () <UIBarButtonItemBackAndForwardable>
 
-@property (nonatomic, strong, nullable) void (^completion)(UIViewController*);
+@property (nonatomic, strong, nullable) void (^completion)(UIViewController* __nonnull, BrowserMenuAction* __nonnull);
 @property (nonatomic, strong, nonnull) WKWebView* webView;
 @property (nonatomic, strong, nonnull) WebViewScaleController* scaleController;
 @property (nonatomic, strong, nonnull) WebViewToolbarController* toolbarController;
@@ -30,14 +30,14 @@
 
 // MARK: INIT
 
-+ (UIViewController*)browserTabWithCompletionHandler:(void (^__nullable)(UIViewController* __nonnull))completion;
++ (UIViewController*)browserTabWithCompletionHandler:(void (^__nullable)(UIViewController* __nonnull, BrowserMenuAction* __nonnull))completion;
 {
     BrowserTabViewController* browserVC = [[BrowserTabViewController alloc] initWithCompletionHandler:completion];
     UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:browserVC];
     return navigationVC;
 }
 
-- (instancetype)initWithCompletionHandler:(void (^__nullable)(UIViewController* __nonnull))completion;
+- (instancetype)initWithCompletionHandler:(void (^__nullable)(UIViewController* __nonnull, BrowserMenuAction* __nonnull))completion;
 {
     self = [super init];
     [NSException throwIfNilObject:self];
@@ -107,6 +107,11 @@
             BrowserMenuActionBoolChange* action = (BrowserMenuActionBoolChange*)_action;
             [[[[self webView] configuration] preferences] setJavaScriptEnabled:[action boolValue]];
             [[self webView] reload];
+        } else if ([_action isKindOfClass:[BrowserMenuActionCloseTab class]] || [_action isKindOfClass:[BrowserMenuActionHideTab class]]) {
+            // pass on hide and close actions to our completion handler
+            void (^block)(UIViewController* __nonnull, BrowserMenuAction* __nonnull) = [self completion];
+            if (!block) { return; }
+            block(welf, _action);
         }
     };
     UIViewController* menuVC = [BrowserMenuViewController browserMenuForWebView:[self webView]

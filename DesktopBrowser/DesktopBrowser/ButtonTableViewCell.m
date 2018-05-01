@@ -11,6 +11,8 @@
 
 @interface ButtonTableViewCell ()
 
+@property (weak, nonatomic) IBOutlet UIButton *button;
+
 @end
 
 @implementation ButtonTableViewCell
@@ -26,11 +28,37 @@
 - (void)setDestructive:(BOOL)destructive;
 {
     _destructive = destructive;
+    [self updateUI];
+}
+
+- (void)setButtonTitle:(NSString* __nonnull)newTitle;
+{
+    [[self button] setTitle:newTitle forState:UIControlStateNormal];
+}
+
+- (void)updateUI;
+{
+    UIColor* color;
+    if ([self isDestructive]) {
+        color = [UIColor redColor];
+    } else {
+        color = [[self button] tintColor];
+    }
+    [[self button] setTitleColor:color forState:UIControlStateNormal];
 }
 
 - (IBAction)buttonTapped:(id)sender;
 {
-    
+    void (^block)(BOOL) = [self actionBlock];
+    if (!block) { return; }
+    block([self isDestructive]);
+}
+
+- (void)prepareForReuse;
+{
+    [super prepareForReuse];
+    [self setDestructive:NO];
+    [self setActionBlock:nil];
 }
 
 @end

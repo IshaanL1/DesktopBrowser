@@ -7,9 +7,10 @@
 //
 
 @import UIKit;
+#import "BrowserMenuAction.h"
 
 @interface BrowserTabViewController : UIViewController
 
-+ (UIViewController*)browserTabWithCompletionHandler:(void (^__nullable)(UIViewController* __nonnull))completion;
++ (UIViewController*)browserTabWithCompletionHandler:(void (^__nullable)(UIViewController* __nonnull, BrowserMenuAction* __nonnull))completion;
 
 @end

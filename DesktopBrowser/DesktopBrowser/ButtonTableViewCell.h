@@ -11,5 +11,8 @@
 @interface ButtonTableViewCell : UITableViewCell
 
 @property (nonatomic, getter=isDestructive) BOOL destructive;
+@property (nonatomic, strong, nullable) void (^actionBlock)(BOOL);
+
+- (void)setButtonTitle:(NSString* __nonnull)newTitle;
 
 @end

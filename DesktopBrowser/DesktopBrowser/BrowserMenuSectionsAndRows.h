@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, BrowserMenuSectionHideCloseRow) {
     BrowserMenuSectionHideCloseRowClose
 };
 
-static const NSInteger BrowserMenuSectionHideCloseRowCount = 0;
+static const NSInteger BrowserMenuSectionHideCloseRowCount = 2;
 
 static NSInteger browserMenuSectionRowCountForSection(BrowserMenuSection section)
 {
@@ -54,7 +54,7 @@ static NSString* browserMenuSectionTitleForSection(BrowserMenuSection section)
 {
     switch (section) {
         case BrowserMenuSectionURL:
-            return @"URL";
+            return @"Website URL";
         case BrowserMenuSectionScaleJS:
             return @"Browser Settings";
         case BrowserMenuSectionHideClose:

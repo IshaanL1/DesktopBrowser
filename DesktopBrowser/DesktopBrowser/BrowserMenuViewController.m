@@ -13,6 +13,7 @@
 #import "UITableViewCell+DBR.h"
 #import "BrowserMenuScaleTableViewCell.h"
 #import "BrowserMenuJavascriptTableViewCell.h"
+#import "ButtonTableViewCell.h"
 
 @interface BrowserMenuViewController () <UIPopoverPresentationControllerDelegate>
 
@@ -62,6 +63,7 @@
     [[self tableView] registerNib:[BrowserMenuURLTableViewCell nib] forCellReuseIdentifier:[BrowserMenuURLTableViewCell reuseIdentifier]];
     [[self tableView] registerNib:[BrowserMenuScaleTableViewCell nib] forCellReuseIdentifier:[BrowserMenuScaleTableViewCell reuseIdentifier]];
     [[self tableView] registerNib:[BrowserMenuJavascriptTableViewCell nib] forCellReuseIdentifier:[BrowserMenuJavascriptTableViewCell reuseIdentifier]];
+    [[self tableView] registerNib:[ButtonTableViewCell nib] forCellReuseIdentifier:[ButtonTableViewCell reuseIdentifier]];
     [[self tableView] setEstimatedRowHeight:100];
     [[self tableView] setRowHeight:UITableViewAutomaticDimension];
 }
@@ -100,8 +102,14 @@
         case BrowserMenuSectionHideClose:
             switch (indexPath.row) {
                 case BrowserMenuSectionHideCloseRowHide:
+                    cell = [tableView dequeueReusableCellWithIdentifier:[ButtonTableViewCell reuseIdentifier] forIndexPath:indexPath];
+                    [(ButtonTableViewCell*)cell setDestructive:NO];
+                    [(ButtonTableViewCell*)cell setButtonTitle:@"View All Tabs"];
                     break;
                 case BrowserMenuSectionHideCloseRowClose:
+                    cell = [tableView dequeueReusableCellWithIdentifier:[ButtonTableViewCell reuseIdentifier] forIndexPath:indexPath];
+                    [(ButtonTableViewCell*)cell setDestructive:YES];
+                    [(ButtonTableViewCell*)cell setButtonTitle:@"Close This Tab"];
                     break;
             }
             break;
@@ -140,6 +148,14 @@
         [cell setValueChangedBlock:^(BrowserMenuActionBoolChange * _Nonnull action) {
             void (^block)(UIViewController* __nonnull, BrowserMenuAction* __nullable) = [welf completion];
             if (!block) { return; }
+            block(welf, action);
+        }];
+    } else if ([_cell isKindOfClass:[ButtonTableViewCell class]]) {
+        ButtonTableViewCell* cell = (ButtonTableViewCell*)_cell;
+        [cell setActionBlock:^(BOOL destructive) {
+            void (^block)(UIViewController* __nonnull, BrowserMenuAction* __nullable) = [welf completion];
+            if (!block) { return; }
+            BrowserMenuAction* action = destructive ? [[BrowserMenuActionCloseTab alloc] init] : [[BrowserMenuActionHideTab alloc] init];
             block(welf, action);
         }];
     }
