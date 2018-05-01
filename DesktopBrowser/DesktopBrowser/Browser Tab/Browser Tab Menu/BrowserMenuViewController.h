@@ -10,11 +10,13 @@
 @import WebKit;
 #import "BrowserMenuAction.h"
 
+typedef void (^BrowserMenuViewControllerCompletionHandler)(UIViewController* __nonnull vc, BrowserMenuAction* __nullable action);
+
 @interface BrowserMenuViewController : UITableViewController
 
 + (UIViewController*)browserMenuForWebView:(WKWebView* __nonnull)webView
                        currentWebViewScale:(double)scale
                    presentingBarButtonItem:(UIBarButtonItem* __nonnull)bbi
-                     withCompletionHandler:(void (^__nullable)(UIViewController* __nonnull, BrowserMenuAction* __nullable))completion;
+                     withCompletionHandler:(BrowserMenuViewControllerCompletionHandler)completion;
 
 @end

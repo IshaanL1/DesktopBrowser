@@ -23,7 +23,7 @@
 @property (nonatomic, strong, nonnull) UIBarButtonItem* backButton;
 @property (nonatomic, strong, nonnull) UIBarButtonItem* forwardButton;
 @property (nonatomic, strong, nonnull) UIBarButtonItem* menuButton;
-@property (nonatomic, strong, nullable) void (^completion)(UIViewController* __nonnull, BrowserTabConfiguration* __nonnull, BrowserMenuAction* __nullable);
+@property (nonatomic, strong, nonnull) BrowserTabViewControllerCompletionHandler completion;
 
 @end
 
@@ -32,9 +32,7 @@
 // MARK: INIT
 
 + (UIViewController*)browserTabWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
-                               completionHandler:(void (^__nullable)(UIViewController* __nonnull,
-                                                                     BrowserTabConfiguration* __nonnull,
-                                                                     BrowserMenuAction* __nullable))completionHandler;
+                               completionHandler:(BrowserTabViewControllerCompletionHandler __nonnull)completionHandler;
 {
     BrowserTabViewController* browserVC = [[BrowserTabViewController alloc] initWithConfiguration:configuration completionHandler:completionHandler];
     UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:browserVC];
@@ -42,9 +40,7 @@
 }
 
 - (instancetype)initWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
-                               completionHandler:(void (^__nullable)(UIViewController* __nonnull,
-                                                                     BrowserTabConfiguration* __nonnull,
-                                                                     BrowserMenuAction* __nullable))completionHandler;
+                    completionHandler:(BrowserTabViewControllerCompletionHandler __nonnull)completionHandler;
 {
     self = [super init];
     [NSException throwIfNilObject:self];
@@ -124,7 +120,7 @@
             [[self webView] reload];
         } else if ([_action isKindOfClass:[BrowserMenuActionCloseTab class]] || [_action isKindOfClass:[BrowserMenuActionHideTab class]]) {
             // pass on hide and close actions to our completion handler
-            void (^block)(UIViewController* __nonnull, BrowserTabConfiguration* __nonnull, BrowserMenuAction* __nullable) = [self completion];
+            BrowserTabViewControllerCompletionHandler block = [self completion];
             if (!block) { return; }
             [vc dismissViewControllerAnimated:YES completion:^{
                 block(welf, [self configuration], _action);

@@ -49,7 +49,7 @@
 
 - (IBAction)buttonTapped:(id)sender;
 {
-    void (^block)(BOOL) = [self actionBlock];
+    ButtonTableViewCellActionBlock block = [self actionBlock];
     if (!block) { return; }
     block([self isDestructive]);
 }

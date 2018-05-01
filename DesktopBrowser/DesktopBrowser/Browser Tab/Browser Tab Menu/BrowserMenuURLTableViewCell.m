@@ -18,7 +18,7 @@
 
 - (IBAction)goButtonTapped:(id)sender;
 {
-    void (^block)(NSString* __nonnull) = [self urlConfirmedBlock];
+    BrowserMenuURLTableViewCellConfirmBlock block = [self urlConfirmBlock];
     if (!block) { return; }
     block([[self textView] text]);
 }
@@ -32,7 +32,7 @@
 {
     [super prepareForReuse];
     [self setURLString:@""];
-    [self setUrlConfirmedBlock:nil];
+    [self setUrlConfirmBlock:nil];
 }
 
 // MARK: UITextViewDelegate

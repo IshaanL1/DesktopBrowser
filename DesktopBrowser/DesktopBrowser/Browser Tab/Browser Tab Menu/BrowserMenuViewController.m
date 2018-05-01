@@ -18,7 +18,7 @@
 @interface BrowserMenuViewController () <UIPopoverPresentationControllerDelegate>
 
 @property (nonatomic, weak, nullable) WKWebView* webView;
-@property (nonatomic, strong, nullable) void (^completion)(UIViewController* __nonnull, BrowserMenuAction* __nonnull);
+@property (nonatomic, strong, nonnull) BrowserMenuViewControllerCompletionHandler completion;
 @property (nonatomic) double currentWebViewScale;
 
 @end
@@ -30,7 +30,7 @@
 + (UIViewController*)browserMenuForWebView:(WKWebView* __nonnull)webView
                        currentWebViewScale:(double)scale
                    presentingBarButtonItem:(UIBarButtonItem* __nonnull)bbi
-                     withCompletionHandler:(void (^__nullable)(UIViewController* __nonnull, BrowserMenuAction* __nullable))completion;
+                     withCompletionHandler:(BrowserMenuViewControllerCompletionHandler)completion;
 {
     BrowserMenuViewController* menuVC = [[BrowserMenuViewController alloc] initWithWebView:webView
                                                                        currentWebViewScale:scale
@@ -43,9 +43,9 @@
     return navigationVC;
 }
 
-- (instancetype)initWithWebView:(WKWebView*)webView
+- (instancetype)initWithWebView:(WKWebView* __nonnull)webView
             currentWebViewScale:(double)scale
-          withCompletionHandler:(void (^__nullable)(UIViewController* __nonnull, BrowserMenuAction* __nonnull))completion;
+          withCompletionHandler:(BrowserMenuViewControllerCompletionHandler)completion;
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     [NSException throwIfNilObject:self];
@@ -126,8 +126,8 @@
     if ([_cell isKindOfClass:[BrowserMenuURLTableViewCell class]]) {
         BrowserMenuURLTableViewCell* cell = (BrowserMenuURLTableViewCell*)_cell;
         [cell setURLString:[[[self webView] URL] absoluteString]];
-        [cell setUrlConfirmedBlock:^(NSString* newURLString) {
-            void (^block)(UIViewController* __nonnull, BrowserMenuAction* __nullable) = [welf completion];
+        [cell setUrlConfirmBlock:^(NSString* newURLString) {
+            BrowserMenuViewControllerCompletionHandler block = [welf completion];
             if (!block) { return; }
             BrowserMenuActionURLChange* action = [[BrowserMenuActionURLChange alloc] initWithURLString:newURLString];
             block(welf, action);
@@ -136,7 +136,7 @@
         BrowserMenuScaleTableViewCell* cell = (BrowserMenuScaleTableViewCell*)_cell;
         [cell setScale:[self currentWebViewScale]];
         [cell setScaleChangedBlock:^(BrowserMenuActionScaleChange* _Nonnull action) {
-            void (^block)(UIViewController* __nonnull, BrowserMenuAction* __nullable) = [welf completion];
+            BrowserMenuViewControllerCompletionHandler block = [welf completion];
             if (!block) { return; }
             [welf setCurrentWebViewScale:[action scale]];
             block(welf, action);
@@ -146,14 +146,14 @@
         BOOL jsEnabled = [[[[self webView] configuration] preferences] javaScriptEnabled];
         [cell setJavascriptAction:[[BrowserMenuActionBoolChange alloc] initWithBool:jsEnabled]];
         [cell setValueChangedBlock:^(BrowserMenuActionBoolChange * _Nonnull action) {
-            void (^block)(UIViewController* __nonnull, BrowserMenuAction* __nullable) = [welf completion];
+            BrowserMenuViewControllerCompletionHandler block = [welf completion];
             if (!block) { return; }
             block(welf, action);
         }];
     } else if ([_cell isKindOfClass:[ButtonTableViewCell class]]) {
         ButtonTableViewCell* cell = (ButtonTableViewCell*)_cell;
         [cell setActionBlock:^(BOOL destructive) {
-            void (^block)(UIViewController* __nonnull, BrowserMenuAction* __nullable) = [welf completion];
+            BrowserMenuViewControllerCompletionHandler block = [welf completion];
             if (!block) { return; }
             BrowserMenuAction* action = destructive ? [[BrowserMenuActionCloseTab alloc] init] : [[BrowserMenuActionHideTab alloc] init];
             block(welf, action);
@@ -182,7 +182,7 @@
 {
     if ([_cell isKindOfClass:[BrowserMenuURLTableViewCell class]]) {
         BrowserMenuURLTableViewCell* cell = (BrowserMenuURLTableViewCell*)_cell;
-        [cell setUrlConfirmedBlock:nil];
+        [cell setUrlConfirmBlock:nil];
     } else if ([_cell isKindOfClass:[BrowserMenuScaleTableViewCell class]]) {
         BrowserMenuScaleTableViewCell* cell = (BrowserMenuScaleTableViewCell*)_cell;
         [cell setScaleChangedBlock:nil];

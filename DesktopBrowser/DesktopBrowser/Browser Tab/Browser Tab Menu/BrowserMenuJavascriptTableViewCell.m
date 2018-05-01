@@ -23,9 +23,9 @@
 
 - (IBAction)switchControlToggled:(id)sender;
 {
-    void (^block)(BrowserMenuActionBoolChange* __nonnull) = [self valueChangedBlock];
+    BrowserMenuJavascriptTableViewCellValueChangedBlock block = [self valueChangedBlock];
     if (!block) { return; }
-    BrowserMenuActionBoolChange* action = [[BrowserMenuActionBoolChange alloc] initWithBool:[[self switchControl]isOn]];
+    BrowserMenuActionBoolChange* action = [[BrowserMenuActionBoolChange alloc] initWithBool:[[self switchControl] isOn]];
     block(action);
 }
 

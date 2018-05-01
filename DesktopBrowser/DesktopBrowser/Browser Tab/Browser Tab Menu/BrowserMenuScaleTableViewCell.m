@@ -79,7 +79,7 @@ static NSString* BrowserMenuScaleStringFromDouble(double number)
 
 - (void)callCompletionBlockWithAction:(BrowserMenuActionScaleChange* __nonnull)action;
 {
-    void (^block)(BrowserMenuActionScaleChange* __nonnull) = [self scaleChangedBlock];
+    BrowserMenuScaleTableViewCellScaleChangedBlock block = [self scaleChangedBlock];
     if (!block) { return; }
     block(action);
 }

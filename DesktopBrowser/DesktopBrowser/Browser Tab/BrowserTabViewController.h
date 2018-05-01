@@ -10,11 +10,13 @@
 #import "BrowserMenuAction.h"
 #import "BrowserTabConfiguration.h"
 
+typedef void (^BrowserTabViewControllerCompletionHandler)(UIViewController* __nonnull vc,
+                                                           BrowserTabConfiguration* __nonnull config,
+                                                           BrowserMenuAction* __nullable action);
+
 @interface BrowserTabViewController : UIViewController
 
 + (UIViewController*)browserTabWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
-                               completionHandler:(void (^__nullable)(UIViewController* __nonnull,
-                                                                     BrowserTabConfiguration* __nonnull,
-                                                                     BrowserMenuAction* __nullable))completionHandler;
+                               completionHandler:(BrowserTabViewControllerCompletionHandler __nonnull)completionHandler;
 
 @end

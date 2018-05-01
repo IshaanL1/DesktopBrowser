@@ -8,9 +8,11 @@
 
 @import UIKit;
 
+typedef void (^BrowserMenuURLTableViewCellConfirmBlock)(NSString* __nonnull urlString);
+
 @interface BrowserMenuURLTableViewCell : UITableViewCell
 
-@property (nonatomic, strong, nullable) void (^urlConfirmedBlock)(NSString* __nonnull);
+@property (nonatomic, strong, nullable) BrowserMenuURLTableViewCellConfirmBlock urlConfirmBlock;
 
 - (void)setURLString:(NSString* __nonnull)newURL;
 

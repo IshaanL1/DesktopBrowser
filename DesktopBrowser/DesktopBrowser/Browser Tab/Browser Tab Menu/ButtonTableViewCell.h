@@ -8,10 +8,12 @@
 
 @import UIKit;
 
+typedef void (^ButtonTableViewCellActionBlock)(BOOL newValue);
+
 @interface ButtonTableViewCell : UITableViewCell
 
 @property (nonatomic, getter=isDestructive) BOOL destructive;
-@property (nonatomic, strong, nullable) void (^actionBlock)(BOOL);
+@property (nonatomic, strong, nullable) ButtonTableViewCellActionBlock actionBlock;
 
 - (void)setButtonTitle:(NSString* __nonnull)newTitle;
 
