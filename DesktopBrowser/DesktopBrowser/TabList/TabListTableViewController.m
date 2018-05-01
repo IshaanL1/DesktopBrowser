@@ -25,6 +25,13 @@
     [[self tableView] setTableFooterView:[[UIView alloc] init]];
 }
 
+- (void)reloadItemAtIndex:(NSInteger)index;
+{
+    [[self tableView] beginUpdates];
+    [[self tableView] reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationRight];
+    [[self tableView] endUpdates];
+}
+
 - (void)addedItemAtIndex:(NSInteger)index;
 {
     [[self tableView] beginUpdates];

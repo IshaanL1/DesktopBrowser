@@ -106,7 +106,8 @@
 
 - (void)changeDidOccurToConfiguration:(BrowserTabConfiguration*)configuration;
 {
-    NSLog(@"Config Changed! %@", configuration);
+    NSInteger idx = [[self tabs] indexOfObject:configuration];
+    [[self tableViewController] reloadItemAtIndex:idx];
 }
 
 @end

@@ -23,6 +23,7 @@
 @property (nonatomic, weak, nullable) NSArray<BrowserTabConfiguration*>* dataSource;
 @property (nonatomic, weak, nullable) id<TabListTableViewControllerDelegate> delegate;
 - (void)addedItemAtIndex:(NSInteger)index;
+- (void)reloadItemAtIndex:(NSInteger)index;
 - (void)removedItemAtIndex:(NSInteger)index;
 
 @end
