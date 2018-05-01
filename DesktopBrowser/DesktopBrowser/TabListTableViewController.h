@@ -9,9 +9,20 @@
 @import UIKit;
 #import "BrowserTabConfiguration.h"
 
+
+@protocol TabListTableViewControllerDelegate
+
+- (void)userSelectedTabConfiguration:(BrowserTabConfiguration* __nonnull)configuration;
+- (void)userDeletedTabConfigurationAtIndexPath:(NSIndexPath* __nonnull)indexPath
+                         withCompletionHandler:(void (^_Nonnull)(BOOL)) completion;
+
+@end
+
 @interface TabListTableViewController : UITableViewController
 
-@property (nonatomic, weak, nullable) NSMutableArray<BrowserTabConfiguration*>* sharedMutableDataSource;
-- (void)dataChanged;
+@property (nonatomic, weak, nullable) NSArray<BrowserTabConfiguration*>* dataSource;
+@property (nonatomic, weak, nullable) id<TabListTableViewControllerDelegate> delegate;
+- (void)addedItemAtIndex:(NSInteger)index;
+- (void)removedItemAtIndex:(NSInteger)index;
 
 @end

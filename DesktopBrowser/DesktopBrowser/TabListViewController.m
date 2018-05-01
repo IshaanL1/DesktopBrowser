@@ -12,7 +12,7 @@
 #import "BrowserTabConfiguration.h"
 #import "UIBarButtonItem+DBR.h"
 
-@interface TabListViewController ()
+@interface TabListViewController () <TabListTableViewControllerDelegate>
 
 @property (weak, nonatomic) TabListTableViewController* tableViewController;
 @property (nonatomic, strong) NSMutableArray<BrowserTabConfiguration*>* tabs;
@@ -43,7 +43,8 @@
 
     // configure childVC
     TabListTableViewController* tableViewController = [[TabListTableViewController alloc] init];
-    [tableViewController setSharedMutableDataSource:[self tabs]];
+    [tableViewController setDelegate:self];
+    [tableViewController setDataSource:[self tabs]];
     [self setTableViewController:tableViewController];
     [self addChildViewController:tableViewController];
     UIView* myview = [self view];
@@ -66,7 +67,22 @@
     [[self tabs] addObject:[[BrowserTabConfiguration alloc] initWithURLString:@"https://www.duckduckgo.com"
                                                                         scale:2
                                                             javascriptEnabled:YES]];
-    [[self tableViewController] dataChanged];
+    [[self tableViewController] addedItemAtIndex:[[self tabs] count] - 1];
+}
+
+// MARK: TabListTableViewControllerDelegate
+
+- (void)userSelectedTabConfiguration:(BrowserTabConfiguration* __nonnull)configuration;
+{
+
+}
+
+- (void)userDeletedTabConfigurationAtIndexPath:(NSIndexPath* __nonnull)indexPath
+                         withCompletionHandler:(void (^_Nonnull)(BOOL)) completion;
+{
+    [[self tabs] removeObjectAtIndex:indexPath.row];
+    [[self tableViewController] removedItemAtIndex:indexPath.row];
+    completion(YES);
 }
 
 @end
