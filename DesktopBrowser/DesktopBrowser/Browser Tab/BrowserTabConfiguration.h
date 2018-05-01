@@ -18,3 +18,9 @@
 - (instancetype)initWithURLString:(NSString*)urlString scale:(double)scale javascriptEnabled:(BOOL)jsEnabled;
 
 @end
+
+@protocol BrowserTabConfigurationChangeDelegate
+
+- (void)changeDidOccurToConfiguration:(BrowserTabConfiguration*)configuration;
+
+@end

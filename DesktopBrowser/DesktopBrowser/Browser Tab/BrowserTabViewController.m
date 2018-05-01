@@ -24,6 +24,7 @@
 @property (nonatomic, strong, nonnull) UIBarButtonItem* forwardButton;
 @property (nonatomic, strong, nonnull) UIBarButtonItem* menuButton;
 @property (nonatomic, strong, nonnull) BrowserTabViewControllerCompletionHandler completion;
+@property (nonatomic, weak, nullable) id<BrowserTabConfigurationChangeDelegate> configurationChangeDelegate;
 
 @end
 
@@ -32,14 +33,18 @@
 // MARK: INIT
 
 + (UIViewController*)browserTabWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
+                     configurationChangeDelegate:(id<BrowserTabConfigurationChangeDelegate> __nullable)delegate
                                completionHandler:(BrowserTabViewControllerCompletionHandler __nonnull)completionHandler;
 {
-    BrowserTabViewController* browserVC = [[BrowserTabViewController alloc] initWithConfiguration:configuration completionHandler:completionHandler];
+    BrowserTabViewController* browserVC = [[BrowserTabViewController alloc] initWithConfiguration:configuration
+                                                                      configurationChangeDelegate:delegate
+                                                                                completionHandler:completionHandler];
     UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:browserVC];
     return navigationVC;
 }
 
 - (instancetype)initWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
+          configurationChangeDelegate:(id<BrowserTabConfigurationChangeDelegate> __nullable)delegate
                     completionHandler:(BrowserTabViewControllerCompletionHandler __nonnull)completionHandler;
 {
     self = [super init];
@@ -47,6 +52,7 @@
     WKWebView* webView = [[WKWebView alloc] init_DBR];
     _configuration = configuration;
     _completion = completionHandler;
+    _configurationChangeDelegate = delegate;
     _scaleController = [[WebViewScaleController alloc] initWithManagedWebView: webView];
     _toolbarController = [[WebViewToolbarController alloc] initWithManagedWebView:webView];
     _webView = webView;
@@ -128,6 +134,7 @@
         }
     };
     UIViewController* menuVC = [BrowserMenuViewController browserMenuWithConfiguration:[self configuration]
+                                                           configurationChangeDelegate:[self configurationChangeDelegate]
                                                                presentingBarButtonItem:sender
                                                                  withCompletionHandler:action];
     [self presentViewController:menuVC animated:YES completion:nil];

@@ -15,6 +15,7 @@ typedef void (^BrowserMenuViewControllerCompletionHandler)(UIViewController* __n
 @interface BrowserMenuViewController : UITableViewController
 
 + (UIViewController*)browserMenuWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
+                      configurationChangeDelegate:(id<BrowserTabConfigurationChangeDelegate> __nullable)delegate
                    presentingBarButtonItem:(UIBarButtonItem* __nonnull)bbi
                      withCompletionHandler:(BrowserMenuViewControllerCompletionHandler)completion;
 

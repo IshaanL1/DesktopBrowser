@@ -21,6 +21,7 @@
 @property (nonatomic, strong, nonnull) BrowserTabConfiguration* configuration;
 @property (nonatomic, strong, nonnull) BrowserMenuViewControllerCompletionHandler completion;
 @property (nonatomic, weak, nullable) BrowserMenuTableViewController* tableViewController;
+@property (nonatomic, weak, nullable) id<BrowserTabConfigurationChangeDelegate> configurationChangeDelegate;
 
 @end
 
@@ -29,10 +30,12 @@
 // MARK: INIT
 
 + (UIViewController*)browserMenuWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
+                      configurationChangeDelegate:(id<BrowserTabConfigurationChangeDelegate> __nullable)delegate
                           presentingBarButtonItem:(UIBarButtonItem* __nonnull)bbi
                             withCompletionHandler:(BrowserMenuViewControllerCompletionHandler)completion;
 {
     BrowserMenuViewController* menuVC = [[BrowserMenuViewController alloc] initWithConfiguration:configuration
+                                                                     configurationChangeDelegate:delegate
                                                                            withCompletionHandler:completion];
     [menuVC setTitle:@"Menu"];
     UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:menuVC];
@@ -43,10 +46,12 @@
 }
 
 - (instancetype)initWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
+          configurationChangeDelegate:(id<BrowserTabConfigurationChangeDelegate> __nullable)delegate
                 withCompletionHandler:(BrowserMenuViewControllerCompletionHandler)completion;
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     [NSException throwIfNilObject:self];
+    _configurationChangeDelegate = delegate;
     _completion = completion;
     _configuration = configuration;
     return self;
@@ -82,12 +87,18 @@
     BrowserMenuViewControllerCompletionHandler block = [self completion];
     if (!block) { return; }
     BrowserMenuAction* action = [[BrowserMenuActionURLChange alloc] initWithURLString:newURLString];
+    BrowserTabConfiguration* config = [self configuration];
+    [config setCurrentURLString:newURLString];
+    [[self configurationChangeDelegate] changeDidOccurToConfiguration:config];
     block(self, action);
 }
 - (void)userDidChangeWebViewScale:(BrowserMenuActionScaleChange*)action;
 {
     BrowserMenuViewControllerCompletionHandler block = [self completion];
     if (!block) { return; }
+    BrowserTabConfiguration* config = [self configuration];
+    [config setScale:[action scale]];
+    [[self configurationChangeDelegate] changeDidOccurToConfiguration:config];
     block(self, action);
 }
 - (void)userDidChangeJSEnabled:(BOOL)jsEnabled;
@@ -95,6 +106,9 @@
     BrowserMenuViewControllerCompletionHandler block = [self completion];
     if (!block) { return; }
     BrowserMenuAction* action = [[BrowserMenuActionBoolChange alloc] initWithBool:jsEnabled];
+    BrowserTabConfiguration* config = [self configuration];
+    [config setJavascriptEnabled:jsEnabled];
+    [[self configurationChangeDelegate] changeDidOccurToConfiguration:config];
     block(self, action);
 }
 - (void)userDidSelectHideTab;

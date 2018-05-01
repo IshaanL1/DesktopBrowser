@@ -13,7 +13,7 @@
 #import "UIBarButtonItem+DBR.h"
 #import "BrowserTabViewController.h"
 
-@interface TabListViewController () <TabListTableViewControllerDelegate>
+@interface TabListViewController () <TabListTableViewControllerDelegate, BrowserTabConfigurationChangeDelegate>
 
 @property (weak, nonatomic) TabListTableViewController* tableViewController;
 @property (nonatomic, strong) NSMutableArray<BrowserTabConfiguration*>* tabs;
@@ -77,6 +77,7 @@
 {
     __weak TabListViewController* welf = self;
     UIViewController* tabVC = [BrowserTabViewController browserTabWithConfiguration:configuration
+                                                        configurationChangeDelegate:self
                                                                   completionHandler:^(UIViewController * _Nonnull vc, BrowserTabConfiguration * _Nonnull configuration, BrowserMenuAction * _Nullable action)
     {
         if (!action || [action isKindOfClass:[BrowserMenuActionHideTab class]]) {
@@ -99,6 +100,13 @@
     [[self tableViewController] removedItemAtIndex:indexPath.row];
     if (!completion) { return; }
     completion(YES);
+}
+
+// MARK: BrowserTabConfigurationChangeDelegate
+
+- (void)changeDidOccurToConfiguration:(BrowserTabConfiguration*)configuration;
+{
+    NSLog(@"Config Changed! %@", configuration);
 }
 
 @end

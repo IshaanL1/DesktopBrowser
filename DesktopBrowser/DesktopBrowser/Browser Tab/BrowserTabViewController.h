@@ -17,6 +17,7 @@ typedef void (^BrowserTabViewControllerCompletionHandler)(UIViewController* __no
 @interface BrowserTabViewController : UIViewController
 
 + (UIViewController*)browserTabWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
+                     configurationChangeDelegate:(id<BrowserTabConfigurationChangeDelegate> __nullable)delegate
                                completionHandler:(BrowserTabViewControllerCompletionHandler __nonnull)completionHandler;
 
 @end
