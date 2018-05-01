@@ -31,6 +31,8 @@
 		50CCF0D12098078100ABF37F /* TabListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCF0D02098078100ABF37F /* TabListViewController.m */; };
 		50CCF0D4209807A900ABF37F /* TabListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCF0D3209807A900ABF37F /* TabListTableViewController.m */; };
 		50CCF0D720980C6200ABF37F /* BrowserTabConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCF0D620980C6200ABF37F /* BrowserTabConfiguration.m */; };
+		50CCF0DB2098109700ABF37F /* TabListTabTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCF0D92098109700ABF37F /* TabListTabTableViewCell.m */; };
+		50CCF0DC2098109700ABF37F /* TabListTabTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 50CCF0DA2098109700ABF37F /* TabListTabTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,9 @@
 		50CCF0D3209807A900ABF37F /* TabListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabListTableViewController.m; sourceTree = "<group>"; };
 		50CCF0D520980C6200ABF37F /* BrowserTabConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrowserTabConfiguration.h; sourceTree = "<group>"; };
 		50CCF0D620980C6200ABF37F /* BrowserTabConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BrowserTabConfiguration.m; sourceTree = "<group>"; };
+		50CCF0D82098109700ABF37F /* TabListTabTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabListTabTableViewCell.h; sourceTree = "<group>"; };
+		50CCF0D92098109700ABF37F /* TabListTabTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabListTabTableViewCell.m; sourceTree = "<group>"; };
+		50CCF0DA2098109700ABF37F /* TabListTabTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabListTabTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +121,9 @@
 				50CCF0D02098078100ABF37F /* TabListViewController.m */,
 				50CCF0D2209807A900ABF37F /* TabListTableViewController.h */,
 				50CCF0D3209807A900ABF37F /* TabListTableViewController.m */,
+				50CCF0D82098109700ABF37F /* TabListTabTableViewCell.h */,
+				50CCF0D92098109700ABF37F /* TabListTabTableViewCell.m */,
+				50CCF0DA2098109700ABF37F /* TabListTabTableViewCell.xib */,
 				504816612095DDC100AE966F /* BrowserTabViewController.h */,
 				504816622095DDC100AE966F /* BrowserTabViewController.m */,
 				504816732096C3A200AE966F /* BrowserMenuViewController.h */,
@@ -215,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50336F7920973B45009BDE5C /* BrowserMenuJavascriptTableViewCell.xib in Resources */,
+				50CCF0DC2098109700ABF37F /* TabListTabTableViewCell.xib in Resources */,
 				50CCF0CE2097FEE200ABF37F /* ButtonTableViewCell.xib in Resources */,
 				504816582095DC3D00AE966F /* LaunchScreen.storyboard in Resources */,
 				504816552095DC3D00AE966F /* Assets.xcassets in Resources */,
@@ -242,6 +251,7 @@
 				50336F7820973B45009BDE5C /* BrowserMenuJavascriptTableViewCell.m in Sources */,
 				504816752096C3A200AE966F /* BrowserMenuViewController.m in Sources */,
 				504816692095E16C00AE966F /* NSException+DBR.m in Sources */,
+				50CCF0DB2098109700ABF37F /* TabListTabTableViewCell.m in Sources */,
 				5048167C2096DE1900AE966F /* BrowserMenuURLTableViewCell.m in Sources */,
 				5048166F2095F65C00AE966F /* WebViewToolbarController.m in Sources */,
 				5048164D2095DC3C00AE966F /* AppDelegate.m in Sources */,
