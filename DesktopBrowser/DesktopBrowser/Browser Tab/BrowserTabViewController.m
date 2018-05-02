@@ -67,6 +67,12 @@
 - (void)viewDidLoad;
 {
     [super viewDidLoad];
+    // configure to recieve KVO from webview for URL changing
+    __weak BrowserTabViewController* welf = self;
+    [[self toolbarController] setPageURLChangedBlock:^(NSString *newString) {
+        [[welf configuration] setURLString:newString];
+        [[welf configurationChangeDelegate] changeDidOccurToConfiguration:[[self configuration] copy]];
+    }];
 
     // configure toolbar items
     [[self navigationItem] setRightBarButtonItems:@[[self menuButton]]];
