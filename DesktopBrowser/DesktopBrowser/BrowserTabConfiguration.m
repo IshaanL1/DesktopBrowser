@@ -45,6 +45,13 @@
 {
     return _javascriptEnabled;
 }
+- (BOOL)isEqual:(id)object;
+{
+    if (![object isKindOfClass:[self class]]) {
+        return NO;
+    }
+    return [[(BrowserTabConfiguration*)object uuid] isEqualToString:[self uuid]];
+}
 - (id)copyWithZone:(NSZone *)zone;
 {
     return [[BrowserTabConfiguration alloc] initWithUUIDString:[self uuid]

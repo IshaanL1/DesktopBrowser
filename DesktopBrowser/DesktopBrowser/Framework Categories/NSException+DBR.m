@@ -10,7 +10,7 @@
 
 @implementation NSException (DBR)
 
-+ (void)throwIfNilObject:(id __nullable) object;
++ (void)throwIfNilObject:(id __nullable)object;
 {
     if (object) { return; }
     @throw [[NSException alloc] initWithName:@"DBR_assertObjectNotNIL"
@@ -18,4 +18,14 @@
                                     userInfo:nil];
 }
 
++ (void)throwIfNSNotFound:(NSInteger)value;
+{
+    if (value == NSNotFound) {
+        @throw [[NSException alloc] initWithName:@"DBR_assertValueNotNSNotFound"
+                                          reason:@"Expected Value to NOT be NSNotFound"
+                                        userInfo:nil];
+    } else {
+        return;
+    }
+}
 @end

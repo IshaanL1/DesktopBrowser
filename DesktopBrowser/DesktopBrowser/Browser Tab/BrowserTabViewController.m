@@ -16,7 +16,7 @@
 
 @interface BrowserTabViewController () <UIBarButtonItemBackAndForwardable, BrowserMenuViewControllerDelegate>
 
-@property (nonatomic, strong, nonnull) BrowserTabConfiguration* configuration;
+@property (nonatomic, strong, nonnull) MutableBrowserTabConfiguration* configuration;
 @property (nonatomic, strong, nonnull) WKWebView* webView;
 @property (nonatomic, strong, nonnull) WebViewScaleController* scaleController;
 @property (nonatomic, strong, nonnull) WebViewToolbarController* toolbarController;
@@ -50,7 +50,7 @@
     self = [super init];
     [NSException throwIfNilObject:self];
     WKWebView* webView = [[WKWebView alloc] init_DBR];
-    _configuration = configuration;
+    _configuration = [configuration mutableCopy];
     _completion = completionHandler;
     _configurationChangeDelegate = delegate;
     _scaleController = [[WebViewScaleController alloc] initWithManagedWebView: webView];
@@ -117,15 +117,21 @@
 {
     [self loadURLString:newURLString];
     [vc dismissViewControllerAnimated:YES completion:nil];
+    [[self configuration] setURLString:newURLString];
+    [[self configurationChangeDelegate] changeDidOccurToConfiguration:[[self configuration] copy]];
 }
 - (void)userDidChangeWebViewScale:(double)newScale fromViewController:(UIViewController*)vc;
 {
     [[self scaleController] setBrowserScale:newScale];
+    [[self configuration] setScale:newScale];
+    [[self configurationChangeDelegate] changeDidOccurToConfiguration:[[self configuration] copy]];
 }
 - (void)userDidChangeJSEnabled:(BOOL)newJSEnabled fromViewController:(UIViewController*)vc;
 {
     [[[[self webView] configuration] preferences] setJavaScriptEnabled:newJSEnabled];
     [[self webView] reload];
+    [[self configuration] setJavascriptEnabled:newJSEnabled];
+    [[self configurationChangeDelegate] changeDidOccurToConfiguration:[[self configuration] copy]];
 }
 - (void)userDidSelectHideTabFromViewController:(UIViewController*)vc;
 {

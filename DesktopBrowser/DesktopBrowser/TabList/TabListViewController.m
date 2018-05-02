@@ -108,6 +108,8 @@
 - (void)changeDidOccurToConfiguration:(BrowserTabConfiguration*)configuration;
 {
     NSInteger idx = [[self tabs] indexOfObject:configuration];
+    [NSException throwIfNSNotFound:idx];
+    [[self tabs] replaceObjectAtIndex:idx withObject:configuration];
     [[self tableViewController] reloadItemAtIndex:idx];
 }
 

@@ -10,6 +10,7 @@
 
 @interface NSException (DBR)
 
-+ (void)throwIfNilObject:(id __nullable) object;
++ (void)throwIfNilObject:(id __nullable)object;
++ (void)throwIfNSNotFound:(NSInteger)value;
 
 @end
