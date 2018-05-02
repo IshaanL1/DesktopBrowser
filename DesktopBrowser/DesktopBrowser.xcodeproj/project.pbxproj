@@ -120,6 +120,8 @@
 			children = (
 				5048164B2095DC3C00AE966F /* AppDelegate.h */,
 				5048164C2095DC3C00AE966F /* AppDelegate.m */,
+				50CCF0D520980C6200ABF37F /* BrowserTabConfiguration.h */,
+				50CCF0D620980C6200ABF37F /* BrowserTabConfiguration.m */,
 				50CCF0DD2098723100ABF37F /* TabList */,
 				50CCF0DE2098725600ABF37F /* Browser Tab */,
 				50CCF0E0209872BF00ABF37F /* Framework Categories */,
@@ -150,8 +152,6 @@
 			children = (
 				504816612095DDC100AE966F /* BrowserTabViewController.h */,
 				504816622095DDC100AE966F /* BrowserTabViewController.m */,
-				50CCF0D520980C6200ABF37F /* BrowserTabConfiguration.h */,
-				50CCF0D620980C6200ABF37F /* BrowserTabConfiguration.m */,
 				5048166D2095F65C00AE966F /* WebViewToolbarController.h */,
 				5048166E2095F65C00AE966F /* WebViewToolbarController.m */,
 				5048166A2095F11F00AE966F /* WebViewScaleController.h */,
