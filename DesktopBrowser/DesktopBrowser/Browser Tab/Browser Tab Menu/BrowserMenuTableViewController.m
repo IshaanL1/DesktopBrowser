@@ -60,7 +60,7 @@
     __weak BrowserMenuTableViewController* welf = self;
     if (sec == BrowserMenuSectionURL && row == BrowserMenuSectionURLRowURL) {
         BrowserMenuURLTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:[BrowserMenuURLTableViewCell reuseIdentifier] forIndexPath:indexPath];;
-        [cell setURLString:[[self configuration] currentURLString]];
+        [cell setURLString:[[self configuration] urlString]];
         [cell setUrlConfirmBlock:^(NSString* newURLString) {
             [[welf delegate] userDidChangeURLString:newURLString];
         }];

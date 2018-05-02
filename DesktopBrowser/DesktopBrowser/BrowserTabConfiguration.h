@@ -8,19 +8,31 @@
 
 @import Foundation;
 
-@interface BrowserTabConfiguration : NSObject
+@interface BrowserTabConfiguration : NSObject <NSCopying>
+{
+    NSString* _urlString;
+    double _scale;
+    BOOL _javascriptEnabled;
+}
+@property (nonatomic, strong, readonly, nonnull) NSString* uuid;
+@property (nonatomic, strong, readonly, nonnull) NSString* urlString;
+@property (nonatomic, readonly) double scale;
+@property (nonatomic, readonly) BOOL javascriptEnabled;
+- (instancetype)initWithURLString:(NSString* __nonnull)urlString scale:(double)scale javascriptEnabled:(BOOL)jsEnabled;
+- (id)copyWithZone:(NSZone *)zone;
+@end
 
-@property (nonatomic, strong, nonnull) NSString* uuid;
-@property (nonatomic, strong, nullable) NSString* currentURLString;
+@interface MutableBrowserTabConfiguration : BrowserTabConfiguration
+@property (nonatomic, strong, nonnull, setter=setURLString:) NSString* urlString;
 @property (nonatomic) double scale;
 @property (nonatomic) BOOL javascriptEnabled;
-
-- (instancetype)initWithURLString:(NSString*)urlString scale:(double)scale javascriptEnabled:(BOOL)jsEnabled;
-
 @end
 
 @protocol BrowserTabConfigurationChangeDelegate
-
 - (void)changeDidOccurToConfiguration:(BrowserTabConfiguration*)configuration;
-
 @end
+
+@interface BrowserTabConfiguration (Mutating) <NSMutableCopying>
+- (id)mutableCopyWithZone:(NSZone *)zone;
+@end
+

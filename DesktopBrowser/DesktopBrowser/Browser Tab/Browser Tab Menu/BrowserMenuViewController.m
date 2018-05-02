@@ -83,7 +83,7 @@
     if (!block) { return; }
     BrowserMenuAction* action = [[BrowserMenuActionURLChange alloc] initWithURLString:newURLString];
     BrowserTabConfiguration* config = [self configuration];
-    [config setCurrentURLString:newURLString];
+    //[config setCurrentURLString:newURLString];
     [[self configurationChangeDelegate] changeDidOccurToConfiguration:config];
     block(self, action);
 }
@@ -93,7 +93,7 @@
     if (!block) { return; }
     BrowserMenuActionScaleChange* action = [[BrowserMenuActionScaleChange alloc] initWithScale:newScale];
     BrowserTabConfiguration* config = [self configuration];
-    [config setScale:[action scale]];
+    //[config setScale:[action scale]];
     [[self configurationChangeDelegate] changeDidOccurToConfiguration:config];
     block(self, action);
 }
@@ -103,7 +103,7 @@
     if (!block) { return; }
     BrowserMenuAction* action = [[BrowserMenuActionBoolChange alloc] initWithBool:jsEnabled];
     BrowserTabConfiguration* config = [self configuration];
-    [config setJavascriptEnabled:jsEnabled];
+    //[config setJavascriptEnabled:jsEnabled];
     [[self configurationChangeDelegate] changeDidOccurToConfiguration:config];
     block(self, action);
 }
