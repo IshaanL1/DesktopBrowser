@@ -7,10 +7,12 @@
 //
 
 @import WebKit;
-#import "BrowserMenuAction.h"
+
+typedef BOOL(^DoubleInDoubleOutBlock)(double scale);
 
 @interface WebViewScaleController : NSObject
 
+@property (class, nonatomic, strong, readonly, nonnull) DoubleInDoubleOutBlock verifyScale;
 @property (nonatomic, weak, readonly) WKWebView* webView;
 @property (nonatomic) double browserScale;
 

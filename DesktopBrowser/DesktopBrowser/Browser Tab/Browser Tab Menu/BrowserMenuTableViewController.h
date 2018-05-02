@@ -7,7 +7,6 @@
 //
 
 #import "BrowserMenuViewController.h"
-#import "BrowserMenuAction.h"
 #import "BrowserTabConfiguration.h"
 @import UIKit;
 

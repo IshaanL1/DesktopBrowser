@@ -20,12 +20,18 @@
 
 + (void)throwIfNSNotFound:(NSInteger)value;
 {
-    if (value == NSNotFound) {
-        @throw [[NSException alloc] initWithName:@"DBR_assertValueNotNSNotFound"
-                                          reason:@"Expected Value to NOT be NSNotFound"
-                                        userInfo:nil];
-    } else {
-        return;
-    }
+    if (!(value == NSNotFound)) { return; }
+    @throw [[NSException alloc] initWithName:@"DBR_assertValueNotNSNotFound"
+                                      reason:@"Expected Value to NOT be NSNotFound"
+                                    userInfo:nil];
 }
+
++ (void)throwIfFalse:(BOOL)value;
+{
+    if (value) { return; }
+    @throw [[NSException alloc] initWithName:@"DBR_assertValueTRUE"
+                                      reason:@"Expected Value to be to TRUE"
+                                    userInfo:nil];
+}
+
 @end

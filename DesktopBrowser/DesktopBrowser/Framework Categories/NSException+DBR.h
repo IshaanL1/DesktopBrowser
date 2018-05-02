@@ -12,5 +12,6 @@
 
 + (void)throwIfNilObject:(id __nullable)object;
 + (void)throwIfNSNotFound:(NSInteger)value;
++ (void)throwIfFalse:(BOOL)value;
 
 @end

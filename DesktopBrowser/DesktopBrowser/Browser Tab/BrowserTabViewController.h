@@ -7,7 +7,6 @@
 //
 
 @import UIKit;
-#import "BrowserMenuAction.h"
 #import "BrowserTabConfiguration.h"
 
 typedef void (^BrowserTabViewControllerCompletionHandler)(UIViewController* __nonnull vc,

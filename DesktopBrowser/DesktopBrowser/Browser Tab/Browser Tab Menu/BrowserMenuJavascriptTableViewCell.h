@@ -7,7 +7,6 @@
 //
 
 @import UIKit;
-#import "BrowserMenuAction.h"
 
 typedef void (^BrowserMenuJavascriptTableViewCellValueChangedBlock)(BOOL newValue);
 

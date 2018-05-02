@@ -18,6 +18,16 @@
 
 @implementation WebViewScaleController
 
++ (DoubleInDoubleOutBlock)verifyScale;
+{
+    return ^BOOL(double input) {
+        if (input < 1 || input > 4) {
+            return NO;
+        }
+        return YES;
+    };
+}
+
 - (instancetype)initWithManagedWebView:(WKWebView*)webView;
 {
     self = [super init];
@@ -31,6 +41,10 @@
 
 - (void)setBrowserScale:(double)newScale;
 {
+    // verify the scale is valid
+    BOOL valid = [[self class] verifyScale](newScale);
+    [NSException throwIfFalse:valid];
+
     // do the work of the original setter
     _browserScale = newScale;
 

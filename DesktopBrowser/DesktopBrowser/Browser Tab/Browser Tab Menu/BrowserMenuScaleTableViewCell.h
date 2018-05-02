@@ -7,7 +7,7 @@
 //
 
 @import UIKit;
-#import "BrowserMenuAction.h"
+#import "WebViewScaleController.h"
 
 typedef void (^BrowserMenuScaleTableViewCellScaleChangedBlock)(double scale);
 

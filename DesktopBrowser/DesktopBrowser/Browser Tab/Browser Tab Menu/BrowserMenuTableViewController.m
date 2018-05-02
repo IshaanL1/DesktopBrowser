@@ -14,7 +14,6 @@
 #import "BrowserMenuJavascriptTableViewCell.h"
 #import "ButtonTableViewCell.h"
 #import "NSException+DBR.h"
-#import "BrowserMenuAction.h"
 
 @interface BrowserMenuTableViewController ()
 
@@ -70,7 +69,7 @@
     } else if (sec == BrowserMenuSectionScaleJS && row == BrowserMenuSectionScaleJSRowScale) {
         BrowserMenuScaleTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:[BrowserMenuScaleTableViewCell reuseIdentifier] forIndexPath:indexPath];
         [cell setScale:[[self configuration] scale]];
-        [cell setVerifyScale:[BrowserMenuActionScaleChange verifyScale]];
+        [cell setVerifyScale:[WebViewScaleController verifyScale]];
         [cell setScaleChangedBlock:^(double newScale) {
             [[welf delegate] userDidChangeWebViewScale:newScale fromViewController:self];
         }];
