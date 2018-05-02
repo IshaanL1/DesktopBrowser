@@ -19,15 +19,17 @@
 @interface BrowserMenuTableViewController ()
 
 @property (strong, nonatomic, nonnull) BrowserTabConfiguration* configuration;
+@property (weak, nonatomic, nullable) id<BrowserMenuViewControllerDelegate> delegate;
 
 @end
 
 @implementation BrowserMenuTableViewController
 
-- (instancetype)initWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration;
-{
+- (instancetype)initWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
+                             delegate:(id<BrowserMenuViewControllerDelegate> __nonnull)delegate;{
     self = [super init];
     [NSException throwIfNilObject:self];
+    _delegate = delegate;
     _configuration = configuration;
     return self;
 }
@@ -62,7 +64,7 @@
         BrowserMenuURLTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:[BrowserMenuURLTableViewCell reuseIdentifier] forIndexPath:indexPath];;
         [cell setURLString:[[self configuration] urlString]];
         [cell setUrlConfirmBlock:^(NSString* newURLString) {
-            [[welf delegate] userDidChangeURLString:newURLString];
+            [[welf delegate] userDidChangeURLString:newURLString fromViewController:self];
         }];
         return cell;
     } else if (sec == BrowserMenuSectionScaleJS && row == BrowserMenuSectionScaleJSRowScale) {
@@ -70,14 +72,14 @@
         [cell setScale:[[self configuration] scale]];
         [cell setVerifyScale:[BrowserMenuActionScaleChange verifyScale]];
         [cell setScaleChangedBlock:^(double newScale) {
-            [[welf delegate] userDidChangeWebViewScale:newScale];
+            [[welf delegate] userDidChangeWebViewScale:newScale fromViewController:self];
         }];
         return cell;
     } else if (sec == BrowserMenuSectionScaleJS && row == BrowserMenuSectionScaleJSRowJavascript) {
         BrowserMenuJavascriptTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:[BrowserMenuJavascriptTableViewCell reuseIdentifier] forIndexPath:indexPath];
         [cell setToggleEnabled:[[self configuration] javascriptEnabled]];
         [cell setValueChangedBlock:^(BOOL jsEnabled) {
-            [[welf delegate] userDidChangeJSEnabled:jsEnabled];
+            [[welf delegate] userDidChangeJSEnabled:jsEnabled fromViewController:self];
         }];
         return cell;
     } else if (sec == BrowserMenuSectionHideClose && row == BrowserMenuSectionHideCloseRowHide) {
@@ -85,7 +87,7 @@
         [cell setDestructive:NO];
         [cell setButtonTitle:@"View All Tabs"];
         [cell setActionBlock:^(BOOL isDestructive) {
-            [[welf delegate] userDidSelectHideTab];
+            [[welf delegate] userDidSelectHideTabFromViewController:self];
         }];
         return cell;
     } else if (sec == BrowserMenuSectionHideClose && row == BrowserMenuSectionHideCloseRowClose) {
@@ -93,7 +95,7 @@
         [cell setDestructive:YES];
         [cell setButtonTitle:@"Close This Tab"];
         [cell setActionBlock:^(BOOL isDestructive) {
-            [[welf delegate] userDidSelectCloseTab];
+            [[welf delegate] userDidSelectCloseTabFromViewController:self];
         }];
         return cell;
     }

@@ -14,7 +14,7 @@
 #import "UIBarButtonItem+DBR.h"
 #import "BrowserMenuViewController.h"
 
-@interface BrowserTabViewController () <UIBarButtonItemBackAndForwardable>
+@interface BrowserTabViewController () <UIBarButtonItemBackAndForwardable, BrowserMenuViewControllerDelegate>
 
 @property (nonatomic, strong, nonnull) BrowserTabConfiguration* configuration;
 @property (nonatomic, strong, nonnull) WKWebView* webView;
@@ -105,39 +105,47 @@
 
 - (IBAction)menuButtonTapped:(id)sender;
 {
-    __weak BrowserTabViewController *welf = self;
-    void (^action)(UIViewController* __nonnull, BrowserMenuAction* __nullable) = ^(UIViewController* vc, BrowserMenuAction* _action) {
-        if (!_action) {
-            // if action is nil, don't do anything, just dismiss
-            [vc dismissViewControllerAnimated:YES completion:nil];
-        } else if ([_action isKindOfClass:[BrowserMenuActionURLChange class]]) {
-            // if its a URLChange action we need to load the page and dismiss the vc
-            BrowserMenuActionURLChange* action = (BrowserMenuActionURLChange*)_action;
-            [welf loadURLString:[action urlString]];
-            [vc dismissViewControllerAnimated:YES completion:nil];
-        } else if ([_action isKindOfClass:[BrowserMenuActionScaleChange class]]) {
-            // if its a scale change action we need to change the scale, but not dismiss the vc
-            BrowserMenuActionScaleChange* action = (BrowserMenuActionScaleChange*)_action;
-            [[self scaleController] setBrowserScale:[action scale]];
-        } else if ([_action isKindOfClass:[BrowserMenuActionBoolChange class]]) {
-            // if JS changes, update the webview and refresh the page
-            BrowserMenuActionBoolChange* action = (BrowserMenuActionBoolChange*)_action;
-            [[[[self webView] configuration] preferences] setJavaScriptEnabled:[action boolValue]];
-            [[self webView] reload];
-        } else if ([_action isKindOfClass:[BrowserMenuActionCloseTab class]] || [_action isKindOfClass:[BrowserMenuActionHideTab class]]) {
-            // pass on hide and close actions to our completion handler
-            BrowserTabViewControllerCompletionHandler block = [self completion];
-            if (!block) { return; }
-            [vc dismissViewControllerAnimated:YES completion:^{
-                block(welf, [self configuration], _action);
-            }];
-        }
-    };
     UIViewController* menuVC = [BrowserMenuViewController browserMenuWithConfiguration:[self configuration]
-                                                           configurationChangeDelegate:[self configurationChangeDelegate]
-                                                               presentingBarButtonItem:sender
-                                                                 withCompletionHandler:action];
+                                                                              delegate:self
+                                                               presentingBarButtonItem:sender];
     [self presentViewController:menuVC animated:YES completion:nil];
+}
+
+// MARK: BrowserMenuTableViewControllerDelegate
+
+- (void)userDidChangeURLString:(NSString* __nonnull)newURLString fromViewController:(UIViewController*)vc;
+{
+    [self loadURLString:newURLString];
+    [vc dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)userDidChangeWebViewScale:(double)newScale fromViewController:(UIViewController*)vc;
+{
+    [[self scaleController] setBrowserScale:newScale];
+}
+- (void)userDidChangeJSEnabled:(BOOL)newJSEnabled fromViewController:(UIViewController*)vc;
+{
+    [[[[self webView] configuration] preferences] setJavaScriptEnabled:newJSEnabled];
+    [[self webView] reload];
+}
+- (void)userDidSelectHideTabFromViewController:(UIViewController*)vc;
+{
+    BrowserTabViewControllerCompletionHandler block = [self completion];
+    if (!block) { return; }
+    [vc dismissViewControllerAnimated:YES completion:^{
+        block(self, [self configuration], NO);
+    }];
+}
+- (void)userDidSelectCloseTabFromViewController:(UIViewController*)vc;
+{
+    BrowserTabViewControllerCompletionHandler block = [self completion];
+    if (!block) { return; }
+    [vc dismissViewControllerAnimated:YES completion:^{
+        block(self, [self configuration], YES);
+    }];
+}
+- (void)userDidRequestCloseMenuFromViewController:(UIViewController*)vc;
+{
+    [vc dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)loadURLString:(NSString*)urlString;

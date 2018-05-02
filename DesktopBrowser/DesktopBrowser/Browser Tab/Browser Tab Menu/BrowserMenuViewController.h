@@ -7,16 +7,23 @@
 //
 
 @import UIKit;
-#import "BrowserMenuAction.h"
 #import "BrowserTabConfiguration.h"
 
-typedef void (^BrowserMenuViewControllerCompletionHandler)(UIViewController* __nonnull vc, BrowserMenuAction* __nullable action);
+@protocol BrowserMenuViewControllerDelegate
+
+- (void)userDidChangeURLString:(NSString* __nonnull)newURLString fromViewController:(UIViewController*)vc;
+- (void)userDidChangeWebViewScale:(double)newScale fromViewController:(UIViewController*)vc;
+- (void)userDidChangeJSEnabled:(BOOL)newJSEnabled fromViewController:(UIViewController*)vc;
+- (void)userDidSelectHideTabFromViewController:(UIViewController*)vc;
+- (void)userDidSelectCloseTabFromViewController:(UIViewController*)vc;
+- (void)userDidRequestCloseMenuFromViewController:(UIViewController*)vc;
+
+@end
 
 @interface BrowserMenuViewController : UITableViewController
 
 + (UIViewController*)browserMenuWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
-                      configurationChangeDelegate:(id<BrowserTabConfigurationChangeDelegate> __nullable)delegate
-                   presentingBarButtonItem:(UIBarButtonItem* __nonnull)bbi
-                     withCompletionHandler:(BrowserMenuViewControllerCompletionHandler)completion;
+                                         delegate:(id<BrowserMenuViewControllerDelegate> __nonnull)delegate
+                          presentingBarButtonItem:(UIBarButtonItem* __nonnull)bbi;
 
 @end

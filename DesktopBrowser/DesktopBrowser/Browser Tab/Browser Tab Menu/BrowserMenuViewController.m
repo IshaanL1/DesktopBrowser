@@ -11,12 +11,9 @@
 #import "UITableViewCell+DBR.h"
 #import "BrowserMenuTableViewController.h"
 
-@interface BrowserMenuViewController () <UIPopoverPresentationControllerDelegate, BrowserMenuTableViewControllerDelegate>
+@interface BrowserMenuViewController () <UIPopoverPresentationControllerDelegate>
 
-@property (nonatomic, strong, nonnull) BrowserTabConfiguration* configuration;
-@property (nonatomic, strong, nonnull) BrowserMenuViewControllerCompletionHandler completion;
-@property (nonatomic, weak, nullable) BrowserMenuTableViewController* tableViewController;
-@property (nonatomic, weak, nullable) id<BrowserTabConfigurationChangeDelegate> configurationChangeDelegate;
+@property (nonatomic, strong, nonnull) BrowserMenuTableViewController* tableViewController;
 
 @end
 
@@ -25,13 +22,11 @@
 // MARK: INIT
 
 + (UIViewController*)browserMenuWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
-                      configurationChangeDelegate:(id<BrowserTabConfigurationChangeDelegate> __nullable)delegate
-                          presentingBarButtonItem:(UIBarButtonItem* __nonnull)bbi
-                            withCompletionHandler:(BrowserMenuViewControllerCompletionHandler)completion;
+                                         delegate:(id<BrowserMenuViewControllerDelegate> __nonnull)delegate
+                          presentingBarButtonItem:(UIBarButtonItem* __nonnull)bbi;
 {
     BrowserMenuViewController* menuVC = [[BrowserMenuViewController alloc] initWithConfiguration:configuration
-                                                                     configurationChangeDelegate:delegate
-                                                                           withCompletionHandler:completion];
+                                                                     delegate:delegate];
     [menuVC setTitle:@"Menu"];
     UINavigationController* navigationVC = [[UINavigationController alloc] initWithRootViewController:menuVC];
     [navigationVC setModalPresentationStyle:UIModalPresentationPopover];
@@ -41,14 +36,11 @@
 }
 
 - (instancetype)initWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
-          configurationChangeDelegate:(id<BrowserTabConfigurationChangeDelegate> __nullable)delegate
-                withCompletionHandler:(BrowserMenuViewControllerCompletionHandler)completion;
+                             delegate:(id<BrowserMenuViewControllerDelegate> __nullable)delegate;
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     [NSException throwIfNilObject:self];
-    _configurationChangeDelegate = delegate;
-    _completion = completion;
-    _configuration = configuration;
+    _tableViewController = [[BrowserMenuTableViewController alloc] initWithConfiguration:configuration delegate:delegate];
     return self;
 }
 
@@ -59,12 +51,9 @@
     [super viewDidLoad];
 
     // configure childVC
-    BrowserMenuTableViewController* tableViewController = [[BrowserMenuTableViewController alloc] initWithConfiguration:[self configuration]];
-    [tableViewController setDelegate:self];
-    [self setTableViewController:tableViewController];
-    [self addChildViewController:tableViewController];
+    [self addChildViewController:[self tableViewController]];
     UIView* myview = [self view];
-    UIView* subview = [tableViewController view];
+    UIView* subview = [[self tableViewController] view];
     [subview setTranslatesAutoresizingMaskIntoConstraints:NO];
     [myview addSubview:subview];
     [myview addConstraints:@[
@@ -73,53 +62,6 @@
                              [[myview centerXAnchor] constraintEqualToAnchor:[subview centerXAnchor]],
                              [[myview centerYAnchor] constraintEqualToAnchor:[subview centerYAnchor]]
                              ]];
-}
-
-// MARK: BrowserMenuTableViewControllerDelegate
-
-- (void)userDidChangeURLString:(NSString* __nonnull)newURLString;
-{
-    BrowserMenuViewControllerCompletionHandler block = [self completion];
-    if (!block) { return; }
-    BrowserMenuAction* action = [[BrowserMenuActionURLChange alloc] initWithURLString:newURLString];
-    BrowserTabConfiguration* config = [self configuration];
-    //[config setCurrentURLString:newURLString];
-    [[self configurationChangeDelegate] changeDidOccurToConfiguration:config];
-    block(self, action);
-}
-- (void)userDidChangeWebViewScale:(double)newScale;
-{
-    BrowserMenuViewControllerCompletionHandler block = [self completion];
-    if (!block) { return; }
-    BrowserMenuActionScaleChange* action = [[BrowserMenuActionScaleChange alloc] initWithScale:newScale];
-    BrowserTabConfiguration* config = [self configuration];
-    //[config setScale:[action scale]];
-    [[self configurationChangeDelegate] changeDidOccurToConfiguration:config];
-    block(self, action);
-}
-- (void)userDidChangeJSEnabled:(BOOL)jsEnabled;
-{
-    BrowserMenuViewControllerCompletionHandler block = [self completion];
-    if (!block) { return; }
-    BrowserMenuAction* action = [[BrowserMenuActionBoolChange alloc] initWithBool:jsEnabled];
-    BrowserTabConfiguration* config = [self configuration];
-    //[config setJavascriptEnabled:jsEnabled];
-    [[self configurationChangeDelegate] changeDidOccurToConfiguration:config];
-    block(self, action);
-}
-- (void)userDidSelectHideTab;
-{
-    BrowserMenuViewControllerCompletionHandler block = [self completion];
-    if (!block) { return; }
-    BrowserMenuAction* action = [[BrowserMenuActionHideTab alloc] init];
-    block(self, action);
-}
-- (void)userDidSelectCloseTab;
-{
-    BrowserMenuViewControllerCompletionHandler block = [self completion];
-    if (!block) { return; }
-    BrowserMenuAction* action = [[BrowserMenuActionCloseTab alloc] init];
-    block(self, action);
 }
 
 // MARK: UIPopoverPresentationControllerDelegate

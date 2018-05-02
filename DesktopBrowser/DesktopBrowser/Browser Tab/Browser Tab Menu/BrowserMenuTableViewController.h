@@ -6,24 +6,15 @@
 //  Copyright © 2018 Jeffrey Bergier. All rights reserved.
 //
 
+#import "BrowserMenuViewController.h"
 #import "BrowserMenuAction.h"
 #import "BrowserTabConfiguration.h"
 @import UIKit;
 
-@protocol BrowserMenuTableViewControllerDelegate
-
-- (void)userDidChangeURLString:(NSString* __nonnull)newURLString;
-- (void)userDidChangeWebViewScale:(double)newScale;
-- (void)userDidChangeJSEnabled:(BOOL)newJSEnabled;
-- (void)userDidSelectHideTab;
-- (void)userDidSelectCloseTab;
-
-@end
-
 @interface BrowserMenuTableViewController : UITableViewController
 
-@property (nonatomic, weak, nullable) id<BrowserMenuTableViewControllerDelegate> delegate;
-- (instancetype)initWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration;
+- (instancetype)initWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
+                             delegate:(id<BrowserMenuViewControllerDelegate> __nonnull)delegate;
 
 
 @end
