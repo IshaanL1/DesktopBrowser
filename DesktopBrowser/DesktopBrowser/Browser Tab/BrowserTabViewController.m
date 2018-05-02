@@ -94,7 +94,7 @@
     [NSException throwIfNilObject:config];
     [[self scaleController] setBrowserScale:[config scale]];
     [[[[self webView] configuration] preferences] setJavaScriptEnabled:[config javascriptEnabled]];
-    [self loadURLString:[config urlString]];
+    [self loadURLString:[config URLString]];
 }
 
 // MARK: UIBarButtonItemBackAndForwardable

@@ -9,33 +9,54 @@
 #import "BrowserTabConfiguration.h"
 #import "NSException+DBR.h"
 
+// MARK: Immutable Implementation
 @implementation BrowserTabConfiguration
-@dynamic urlString;
+
+// MARK: IVARS
+NSString* _URLString;
+NSString* _pageTitle;
+double _scale;
+BOOL _javascriptEnabled;
+
+// Dynamic so I manage the getters and setters myself for Mutable subclass
+@dynamic URLString;
+@dynamic pageTitle;
 @dynamic scale;
 @dynamic javascriptEnabled;
-- (instancetype)initWithURLString:(NSString*)urlString scale:(double)scale javascriptEnabled:(BOOL)jsEnabled;
+
+// MARK INIT
+- (instancetype)initWithURLString:(NSString*)URLString
+                        pageTitle:(NSString*)pageTitle
+                            scale:(double)scale
+                javascriptEnabled:(BOOL)jsEnabled;
+{
+    self = [self initWithUUIDString:[[NSUUID UUID] UUIDString]
+                          URLString:URLString
+                          pageTitle:pageTitle
+                              scale:scale
+                  javascriptEnabled:_javascriptEnabled];
+    return self;
+}
+- (instancetype)initWithUUIDString:(NSString*)UUIDString
+                         URLString:(NSString*)URLString
+                         pageTitle:(NSString*)pageTitle
+                             scale:(double)scale
+                 javascriptEnabled:(BOOL)jsEnabled;
 {
     self = [super init];
     [NSException throwIfNilObject:self];
-    _uuid = [[[NSUUID alloc] init] UUIDString];
-    _urlString = urlString;
+    _UUIDString = UUIDString;
+    _URLString = URLString;
+    _pageTitle = pageTitle;
     _scale = scale;
     _javascriptEnabled = jsEnabled;
     return self;
 }
-- (instancetype)initWithUUIDString:(NSString*)uuidString urlString:(NSString*)urlString scale:(double)scale javascriptEnabled:(BOOL)jsEnabled;
+
+// MARK: Garbage Getters
+- (NSString *)URLString;
 {
-    self = [super init];
-    [NSException throwIfNilObject:self];
-    _uuid = uuidString;
-    _urlString = urlString;
-    _scale = scale;
-    _javascriptEnabled = jsEnabled;
-    return self;
-}
-- (NSString *)urlString;
-{
-    return _urlString;
+    return _URLString;
 }
 - (double)scale;
 {
@@ -45,29 +66,44 @@
 {
     return _javascriptEnabled;
 }
+
+// MARK: Is Equal Conformance
 - (BOOL)isEqual:(id)object;
 {
     if (![object isKindOfClass:[self class]]) {
         return NO;
     }
-    return [[(BrowserTabConfiguration*)object uuid] isEqualToString:[self uuid]];
+    return [[(BrowserTabConfiguration*)object UUIDString] isEqualToString:[self UUIDString]];
 }
+
+// MARK: Copyable Conformance
 - (id)copyWithZone:(NSZone *)zone;
 {
-    return [[BrowserTabConfiguration alloc] initWithUUIDString:[self uuid]
-                                                     urlString:[self urlString]
+    return [[BrowserTabConfiguration alloc] initWithUUIDString:[self UUIDString]
+                                                     URLString:[self URLString]
+                                                     pageTitle:[self pageTitle]
                                                          scale:[self scale]
                                              javascriptEnabled:[self javascriptEnabled]];
 }
 @end
 
+// MARK: Mutable Implementation
 @implementation MutableBrowserTabConfiguration
-@dynamic urlString;
+
+// Dynamic so I manage the getters and setters myself for Mutable subclass
+@dynamic URLString;
+@dynamic pageTitle;
 @dynamic scale;
 @dynamic javascriptEnabled;
+
+// MARK: Garbage Setters
 - (void)setURLString:(NSString *)urlString;
 {
-    _urlString = urlString;
+    _URLString = urlString;
+}
+- (void)setPageTitle:(NSString *)pageTitle;
+{
+    _pageTitle = pageTitle;
 }
 - (void)setScale:(double)scale;
 {
@@ -77,13 +113,16 @@
 {
     _javascriptEnabled = javascriptEnabled;
 }
+
 @end
 
+// MARK: Mutable Copyable Conformance
 @implementation BrowserTabConfiguration (Mutating)
 - (id)mutableCopyWithZone:(NSZone *)zone;
 {
-    return [[MutableBrowserTabConfiguration alloc] initWithUUIDString:[self uuid]
-                                                            urlString:[self urlString]
+    return [[MutableBrowserTabConfiguration alloc] initWithUUIDString:[self UUIDString]
+                                                            URLString:[self URLString]
+                                                            pageTitle:[self pageTitle]
                                                                 scale:[self scale]
                                                     javascriptEnabled:[self javascriptEnabled]];
 }

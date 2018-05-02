@@ -55,7 +55,7 @@
 {
     TabListTabTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:[TabListTabTableViewCell reuseIdentifier] forIndexPath:indexPath];
     BrowserTabConfiguration* tabData = [[self dataSource] objectAtIndex:indexPath.row];
-    [cell setLabelTitle:[tabData urlString]];
+    [cell setLabelTitle:[tabData URLString]];
     return cell;
 }
 

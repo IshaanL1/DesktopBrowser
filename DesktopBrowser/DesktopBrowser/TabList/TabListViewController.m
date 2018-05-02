@@ -66,6 +66,7 @@
 - (IBAction)addButtonTapped:(id)sender;
 {
     [[self tabs] addObject:[[BrowserTabConfiguration alloc] initWithURLString:@"https://www.duckduckgo.com"
+                                                                    pageTitle:@"DuckDuckGo"
                                                                         scale:2
                                                             javascriptEnabled:YES]];
     [[self tableViewController] addedItemAtIndex:[[self tabs] count] - 1];
