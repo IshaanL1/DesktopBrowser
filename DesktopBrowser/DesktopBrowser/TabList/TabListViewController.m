@@ -12,13 +12,13 @@
 #import "BrowserTabConfiguration.h"
 #import "UIBarButtonItem+DBR.h"
 #import "BrowserTabViewController.h"
-#import "OpenTabCacher.h"
+#import "BrowserTabViewControllerCacher.h"
 
 @interface TabListViewController () <TabListTableViewControllerDelegate, BrowserTabConfigurationChangeDelegate>
 
 @property (weak, nonatomic, nullable) TabListTableViewController* tableViewController;
 @property (nonatomic, strong, nonnull) NSMutableArray<BrowserTabConfiguration*>* tabs;
-@property (nonatomic, strong, nonnull) OpenTabCacher* cacher;
+@property (nonatomic, strong, nonnull) BrowserTabViewControllerCacher* cacher;
 
 @end
 
@@ -36,7 +36,7 @@
 {
     self = [super init];
     [NSException throwIfNilObject:self];
-    _cacher = [[OpenTabCacher alloc] init];
+    _cacher = [[BrowserTabViewControllerCacher alloc] init];
     _tabs = [[NSMutableArray alloc] init];
     return self;
 }

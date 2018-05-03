@@ -6,16 +6,16 @@
 //  Copyright © 2018 Jeffrey Bergier. All rights reserved.
 //
 
-#import "OpenTabCacher.h"
+#import "BrowserTabViewControllerCacher.h"
 #import "NSException+DBR.h"
 
-@interface OpenTabCacher ()
+@interface BrowserTabViewControllerCacher ()
 
 @property (nonatomic, strong, nonnull) NSMutableDictionary<NSString*, UIViewController*>* cache;
 
 @end
 
-@implementation OpenTabCacher
+@implementation BrowserTabViewControllerCacher
 
 - (instancetype)init
 {

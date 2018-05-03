@@ -10,7 +10,7 @@
 #import "BrowserTabConfiguration.h"
 #import "BrowserTabViewController.h"
 
-@interface OpenTabCacher : NSObject
+@interface BrowserTabViewControllerCacher : NSObject
 
 - (UIViewController* __nonnull)newOrCachedBrowserTabWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
                      configurationChangeDelegate:(id<BrowserTabConfigurationChangeDelegate> __nullable)delegate
