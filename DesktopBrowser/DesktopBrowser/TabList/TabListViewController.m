@@ -12,11 +12,13 @@
 #import "BrowserTabConfiguration.h"
 #import "UIBarButtonItem+DBR.h"
 #import "BrowserTabViewController.h"
+#import "OpenTabCacher.h"
 
 @interface TabListViewController () <TabListTableViewControllerDelegate, BrowserTabConfigurationChangeDelegate>
 
-@property (weak, nonatomic) TabListTableViewController* tableViewController;
-@property (nonatomic, strong) NSMutableArray<BrowserTabConfiguration*>* tabs;
+@property (weak, nonatomic, nullable) TabListTableViewController* tableViewController;
+@property (nonatomic, strong, nonnull) NSMutableArray<BrowserTabConfiguration*>* tabs;
+@property (nonatomic, strong, nonnull) OpenTabCacher* cacher;
 
 @end
 
@@ -34,6 +36,7 @@
 {
     self = [super init];
     [NSException throwIfNilObject:self];
+    _cacher = [[OpenTabCacher alloc] init];
     _tabs = [[NSMutableArray alloc] init];
     return self;
 }
@@ -77,10 +80,9 @@
 - (void)userSelectedTabConfiguration:(BrowserTabConfiguration* __nonnull)configuration;
 {
     __weak TabListViewController* welf = self;
-    UIViewController* tabVC =
-    [BrowserTabViewController browserTabWithConfiguration:configuration
-                              configurationChangeDelegate:self
-                                        completionHandler:
+    UIViewController* tabVC = [[self cacher] newOrCachedBrowserTabWithConfiguration:configuration
+                                                        configurationChangeDelegate:self
+                                                                  completionHandler:
      ^(UIViewController * _Nonnull vc, BrowserTabConfiguration * _Nonnull configuration, BOOL shouldDelete)
      {
          void(^block)(void) = ^{
@@ -99,6 +101,7 @@
     [NSException throwIfNSNotFound:idx];
     [[self tabs] removeObjectAtIndex:idx];
     [[self tableViewController] removedItemAtIndex:idx];
+    [[self cacher] invalidateCacheForConfiguration:configuration];
     if (!completion) { return; }
     completion(YES);
 }
