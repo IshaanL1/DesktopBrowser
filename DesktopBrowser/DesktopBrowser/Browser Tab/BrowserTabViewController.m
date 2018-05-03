@@ -73,6 +73,10 @@
         [[welf configuration] setURLString:newString];
         [[welf configurationChangeDelegate] changeDidOccurToConfiguration:[[self configuration] copy]];
     }];
+    [[self toolbarController] setPageTitleChangedBlock:^(NSString *newString) {
+        [[welf configuration] setPageTitle:newString];
+        [[welf configurationChangeDelegate] changeDidOccurToConfiguration:[[self configuration] copy]];
+    }];
 
     // configure toolbar items
     [[self navigationItem] setRightBarButtonItems:@[[self menuButton]]];

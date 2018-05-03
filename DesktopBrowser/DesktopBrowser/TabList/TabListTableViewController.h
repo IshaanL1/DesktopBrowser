@@ -13,7 +13,7 @@
 @protocol TabListTableViewControllerDelegate
 
 - (void)userSelectedTabConfiguration:(BrowserTabConfiguration* __nonnull)configuration;
-- (void)userDeletedTabConfigurationAtIndexPath:(NSIndexPath* __nonnull)indexPath
+- (void)userDeletedTabConfiguration:(BrowserTabConfiguration* __nonnull)configuration
                          withCompletionHandler:(void (^_Nullable)(BOOL)) completion;
 
 @end

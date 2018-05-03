@@ -54,11 +54,14 @@ static NSString* kPageURL = @"URL";
     } else if (sanity && [keyPath isEqualToString:kPageTitle]) {
         NSString* title = [[self webView] title];
         [[self navigationItem] setTitle:title];
+        NewStringBlock block = [self pageTitleChangedBlock];
+        if (!block) { return; }
+        block(title);
     } else if (sanity && [keyPath isEqualToString:kPageURL]) {
         NewStringBlock block = [self pageURLChangedBlock];
         if (!block) { return; }
-        NSString* title = [[[self webView] URL] absoluteString];
-        block(title);
+        NSString* url = [[[self webView] URL] absoluteString];
+        block(url);
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }

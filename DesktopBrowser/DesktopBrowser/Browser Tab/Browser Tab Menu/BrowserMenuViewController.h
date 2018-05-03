@@ -20,7 +20,7 @@
 
 @end
 
-@interface BrowserMenuViewController : UITableViewController
+@interface BrowserMenuViewController : UIViewController
 
 + (UIViewController*)browserMenuWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
                                          delegate:(id<BrowserMenuViewControllerDelegate> __nonnull)delegate

@@ -17,6 +17,7 @@ typedef void(^NewStringBlock)(NSString* newString);
 @property (nonatomic, weak, nullable) UIBarButtonItem* backButton;
 @property (nonatomic, weak, nullable) UIBarButtonItem* forwardButton;
 @property (nonatomic, strong, nullable) NewStringBlock pageURLChangedBlock;
+@property (nonatomic, strong, nullable) NewStringBlock pageTitleChangedBlock;
 
 - (instancetype)initWithManagedWebView:(WKWebView*)webView;
 

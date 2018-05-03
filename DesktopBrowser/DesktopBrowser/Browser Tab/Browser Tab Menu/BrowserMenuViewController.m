@@ -38,7 +38,7 @@
 - (instancetype)initWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
                              delegate:(id<BrowserMenuViewControllerDelegate> __nullable)delegate;
 {
-    self = [super initWithStyle:UITableViewStyleGrouped];
+    self = [super init];
     [NSException throwIfNilObject:self];
     _tableViewController = [[BrowserMenuTableViewController alloc] initWithConfiguration:configuration delegate:delegate];
     return self;

@@ -26,7 +26,7 @@
 
 - (instancetype)initWithConfiguration:(BrowserTabConfiguration* __nonnull)configuration
                              delegate:(id<BrowserMenuViewControllerDelegate> __nonnull)delegate;{
-    self = [super init];
+    self = [super initWithStyle:UITableViewStyleGrouped];
     [NSException throwIfNilObject:self];
     _delegate = delegate;
     _configuration = configuration;
@@ -42,6 +42,7 @@
     [[self tableView] registerNib:[ButtonTableViewCell nib] forCellReuseIdentifier:[ButtonTableViewCell reuseIdentifier]];
     [[self tableView] setEstimatedRowHeight:100];
     [[self tableView] setRowHeight:UITableViewAutomaticDimension];
+    [[self tableView] setTableFooterView:[[UIView alloc] init]];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;

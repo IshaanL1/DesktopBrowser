@@ -55,7 +55,7 @@
 {
     TabListTabTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:[TabListTabTableViewCell reuseIdentifier] forIndexPath:indexPath];
     BrowserTabConfiguration* tabData = [[self dataSource] objectAtIndex:indexPath.row];
-    [cell setLabelTitle:[tabData URLString]];
+    [cell setLabelTitle:[tabData pageTitle]];
     return cell;
 }
 
@@ -71,7 +71,8 @@
                                                                          title:@"Close Tab"
                                                                        handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL))
     {
-        [[self delegate] userDeletedTabConfigurationAtIndexPath:indexPath withCompletionHandler:completionHandler];
+        BrowserTabConfiguration* tabData = [[self dataSource] objectAtIndex:indexPath.row];
+        [[self delegate] userDeletedTabConfiguration:tabData withCompletionHandler:completionHandler];
     }];
     UISwipeActionsConfiguration* config = [UISwipeActionsConfiguration configurationWithActions:@[action]];
     [config setPerformsFirstActionWithFullSwipe:YES];

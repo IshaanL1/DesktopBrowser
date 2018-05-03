@@ -34,7 +34,7 @@ BOOL _javascriptEnabled;
                           URLString:URLString
                           pageTitle:pageTitle
                               scale:scale
-                  javascriptEnabled:_javascriptEnabled];
+                  javascriptEnabled:jsEnabled];
     return self;
 }
 - (instancetype)initWithUUIDString:(NSString*)UUIDString
@@ -58,6 +58,10 @@ BOOL _javascriptEnabled;
 {
     return _URLString;
 }
+- (NSString *)pageTitle;
+{
+    return _pageTitle;
+}
 - (double)scale;
 {
     return _scale;
@@ -70,7 +74,8 @@ BOOL _javascriptEnabled;
 // MARK: Is Equal Conformance
 - (BOOL)isEqual:(id)object;
 {
-    if (![object isKindOfClass:[self class]]) {
+
+    if (![object respondsToSelector:@selector(UUIDString)]) {
         return NO;
     }
     return [[(BrowserTabConfiguration*)object UUIDString] isEqualToString:[self UUIDString]];

@@ -80,26 +80,25 @@
     UIViewController* tabVC =
     [BrowserTabViewController browserTabWithConfiguration:configuration
                               configurationChangeDelegate:self
-                                        completionHandler:^(UIViewController * _Nonnull vc, BrowserTabConfiguration * _Nonnull configuration, BOOL shouldDelete)
+                                        completionHandler:
+     ^(UIViewController * _Nonnull vc, BrowserTabConfiguration * _Nonnull configuration, BOOL shouldDelete)
      {
-         if (shouldDelete) {
-             [vc dismissViewControllerAnimated:YES completion:^{
-                 NSInteger idx = [[self tabs] indexOfObject:configuration];
-                 NSIndexPath* indexPath = [NSIndexPath indexPathForRow:idx inSection:0];
-                 [welf userDeletedTabConfigurationAtIndexPath:indexPath withCompletionHandler:nil];
-             }];
-         } else {
-             [vc dismissViewControllerAnimated:YES completion:nil];
-         }
+         void(^block)(void) = ^{
+             if (!shouldDelete) { return; }
+             [welf userDeletedTabConfiguration:configuration withCompletionHandler:nil];
+         };
+         [vc dismissViewControllerAnimated:YES completion:block];
      }];
     [self presentViewController:tabVC animated:YES completion:nil];
 }
 
-- (void)userDeletedTabConfigurationAtIndexPath:(NSIndexPath* __nonnull)indexPath
+- (void)userDeletedTabConfiguration:(BrowserTabConfiguration* __nonnull)configuration
                          withCompletionHandler:(void (^_Nullable)(BOOL))completion;
 {
-    [[self tabs] removeObjectAtIndex:indexPath.row];
-    [[self tableViewController] removedItemAtIndex:indexPath.row];
+    NSInteger idx = [[self tabs] indexOfObject:configuration];
+    [NSException throwIfNSNotFound:idx];
+    [[self tabs] removeObjectAtIndex:idx];
+    [[self tableViewController] removedItemAtIndex:idx];
     if (!completion) { return; }
     completion(YES);
 }
